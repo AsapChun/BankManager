@@ -1,7 +1,7 @@
 package BankPackage;
 
 public class Account {
-	public void hi() {
-		
-	}
+	private Balance balance;
+	private CurrentBalance current_balance;
+	
 }
