@@ -57,5 +57,15 @@ public class Customer { //Every customer has a checking and saving account
 	  System.out.println(sb);
 	}
 	
+	  //take out loans if (they have collateral).
+	  //must have money in checkings or savings
+	  public boolean checkColl(Customer c) {
+	    if(c.customer_checking.getBalance() > 0 || c.customer_saving.getBalance() > 0) {
+	      return true;
+	    }else {
+	      return false;
+	    }
+	  }
+	
 	
 }
