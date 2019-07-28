@@ -14,12 +14,18 @@ public class Customer {
 	}
 	
 	public void create_checking() {
-		this.customer_checking = new CheckingAccount();
+		this.customer_checking = new CheckingAccount(this.user_info);
+	}
+	public void create_checking(int inital) {
+	  this.customer_checking = new CheckingAccount(inital, this.user_info);
 	}
 	
 	public void create_saving() {
-		this.customer_saving = new SavingAccount();
+		this.customer_saving = new SavingAccount(this.user_info);
 	}
+	public void create_saving(int inital) {
+      this.customer_checking = new SavingAccount(inital, this.user_info);
+    }
 	
 	public void takeLoans() {
 		//ask user whether they want to take from checking or saving

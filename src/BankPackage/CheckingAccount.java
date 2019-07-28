@@ -3,15 +3,15 @@ package BankPackage;
 public class CheckingAccount extends Account{
 	Balance checking_account_balance;
 	//Checking acount has its own balance
-	Customer accountOwner;
+	Data accountOwner;
 	
 	
 
-	public CheckingAccount(Customer owner) {
+	public CheckingAccount(Data owner) {
 		this.checking_account_balance = new Balance(); //these are parts of CheckingAccount
 		accountOwner = owner;
 	}
-	public CheckingAccount(int inital, Customer owner) {
+	public CheckingAccount(int inital, Data owner) {
       this.checking_account_balance = new Balance(inital); //these are parts of CheckingAccount
       accountOwner = owner;
   }

@@ -2,14 +2,14 @@ package BankPackage;
 
 public class SavingAccount extends Account {
     Balance savings_account_balance;
-    Customer accountOwner;
+    Data accountOwner;
     
-    public SavingAccount(Customer user) {
+    public SavingAccount(Data user) {
       this.savings_account_balance =  new Balance();
       accountOwner = user;
       
     }
-    public SavingAccount(int inital, Customer user) {
+    public SavingAccount(int inital, Data user) {
       this.savings_account_balance =  new Balance(inital);
       accountOwner = user;
     }
