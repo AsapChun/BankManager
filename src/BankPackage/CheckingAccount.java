@@ -7,13 +7,11 @@ public class CheckingAccount extends Account{
 	
 	
 
-	public CheckingAccount(Data owner) {
+	public CheckingAccount() {
 		this.checking_account_balance = new Balance(); //these are parts of CheckingAccount
-		accountOwner = owner;
 	}
-	public CheckingAccount(int inital, Data owner) {
+	public CheckingAccount(int inital) {
       this.checking_account_balance = new Balance(inital); //these are parts of CheckingAccount
-      accountOwner = owner;
   }
   
 	@Override
