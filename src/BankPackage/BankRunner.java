@@ -46,7 +46,6 @@ public class BankRunner {
               bank.updateAccount();
               break;
             case 4:
-              exit = false;
               break;
           }
           break;
@@ -65,7 +64,6 @@ public class BankRunner {
             case 3:
               break;
             case 4:
-              exit = false;
               break;
           }
           break;
@@ -83,12 +81,11 @@ public class BankRunner {
             case 3:
               break;
             case 4:
-              exit = false;
               break;
           }
           break;
         case 4:
-          exit = true;
+          exit = false;
           break;
       }
     }

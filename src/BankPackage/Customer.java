@@ -7,12 +7,14 @@ public class Customer { //Every customer has a checking and saving account
 	SavingAccount customer_saving; //will not be initialzied  in constructor, only in button
 	Loans customer_loan;
 	boolean collateral;
+	String Currency;
 	
-	public Customer(String name, int day, int month, int year, int age) {
+	public Customer(String name, int day, int month, int year, int age, String curr) {
 		this.user_info = new Data(name, day, month, year, age);
 		//we should ask for collateral info?
 		create_checking();
 		create_saving();
+		Currency =  curr;
 	}
 	
 	public void create_checking() {
@@ -48,8 +50,8 @@ public class Customer { //Every customer has a checking and saving account
 	  sb.append("Account Name: "+ user_info.getCustomer_name() + "\n");
 	  sb.append("Customer's DOB: "+ user_info.birth_month + "/" + user_info.birth_day + "/" + user_info.birth_year + "\n");
 	  sb.append("Cusomter's age: "+ user_info.age + "\n");
-	  sb.append("Checking Account Balance: " + customer_checking.getBalance() + "\n");
-	  sb.append("Checking Account Balance: " + customer_saving.getBalance() + "\n");
+	  sb.append("Checking Account Balance: "+ Currency + customer_checking.getBalance() + "\n");
+	  sb.append("Saving Account Balance: "+ Currency + customer_saving.getBalance() + "\n");
 	  //Todo
 	  sb.append("Existing Loans on File: (TODO need to add)");
 	  System.out.println(sb);

@@ -49,7 +49,9 @@ public class Bank {
     int year = scan.nextInt();
     System.out.println("Age?");
     int age = scan.nextInt();
-    Customer create = new Customer(name, day, month, year, age);
+    System.out.println("Currency choice ($, ¥, €)");
+    String currency = scan.next();
+    Customer create = new Customer(name, day, month, year, age, currency);
     Customers.add(create);
     System.out.println("Do you want to add funds to your Checking Account? (Y/N)");
     String input = scan.next();
@@ -159,7 +161,7 @@ public class Bank {
         Customer c = (Customer) iter.next();
         String name = c.getName();
         sb.append("Account Name: "+ name + "Age: "+ c.user_info.age + "\n");
-        sb.append("Checking Account Balance: "+ c.customer_checking.getBalance() + "; Saving Account Balance: " + c.customer_saving.getBalance() + "\n");
+        sb.append("Checking Account Balance: "+ c.Currency + c.customer_checking.getBalance() + "; Saving Account Balance: " + c.Currency+ c.customer_saving.getBalance() + "\n");
         sb.append("-----------------" + "\n"); 
       }
       System.out.println(sb);
