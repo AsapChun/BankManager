@@ -24,7 +24,7 @@ public class Customer {
 		this.customer_saving = new SavingAccount(this.user_info);
 	}
 	public void create_saving(int inital) {
-      this.customer_checking = new SavingAccount(inital, this.user_info);
+      this.customer_saving = new SavingAccount(inital, this.user_info);
     }
 	
 	public void takeLoans() {
