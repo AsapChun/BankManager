@@ -1,6 +1,10 @@
 package BankPackage;
 
 public abstract class Account {
+  
+    public Account() {
+      
+    }
 	
 	//Withdraw
 	public abstract void withdraw(int amount);
