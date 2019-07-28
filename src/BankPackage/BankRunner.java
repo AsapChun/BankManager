@@ -27,6 +27,17 @@ public class BankRunner {
           int in = sc.nextInt();
           switch(in) {
             case 1:
+              System.out.println("You have selected Check Accounts!");
+              System.out.println("Do you want to check: 1. All Accounts 2. Specific Account");
+              int n =  sc.nextInt();
+              switch(n) {
+                case 1: 
+                  bank.CheckAllCustomer();
+                  break;
+                case 2:
+                  bank.checkCustomer();
+                  break;
+              }
               break;
             case 2:
               bank.newAccount();

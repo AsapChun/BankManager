@@ -37,9 +37,6 @@ public class Bank {
   }
   //create Accounts
   public void newAccount() {
-
-
-
     System.out.println("To create a new account, please enter the necessary information!");
     Scanner scan = new Scanner(System.in);
     System.out.println("Name?");
@@ -97,7 +94,7 @@ public class Bank {
         exist = false;
         System.out.println("Which account do you want to access? 1. Checking 2. Savings");
         int choice = scan.nextInt();
-        System.out.println("Do you want to: 1. deposit 2. withdraw? ");
+        System.out.println("Do you want to: 1. Deposit 2. Withdraw ");
         int select = scan.nextInt();
         System.out.println("How much?");
         int amount = scan.nextInt();
@@ -131,7 +128,42 @@ public class Bank {
   }
   //Check a individual Account
   public void checkCustomer() {
-    
+    if(Customers.isEmpty()) {
+      System.out.println("No customers in file");
+    }else {
+      Boolean exists = true;
+      System.out.println("Which customer do you want to check? Please enter account name!");
+      Scanner scan = new Scanner(System.in);
+      String name = scan.next();
+      Iterator iter = Customers.iterator();
+      while(iter.hasNext()) {
+        Customer c = (Customer) iter.next();
+        if(c.getName().equals(name)) {
+          exists = false;
+          c.printInformation();
+        }
+      }
+      if(exists) {
+        System.out.println("Customer Does Not Exist!");
+      }
+    }
+  }
+  //print all customers
+  public void CheckAllCustomer() {
+    if(Customers.isEmpty()) {
+      System.out.println("No customers in file");
+    }else {
+      StringBuilder sb = new StringBuilder();
+      Iterator iter = Customers.iterator();
+      while(iter.hasNext()) {
+        Customer c = (Customer) iter.next();
+        String name = c.getName();
+        sb.append("Account Name: "+ name + "Age: "+ c.user_info.age + "\n");
+        sb.append("Checking Account Balance: "+ c.customer_checking.getBalance() + "; Saving Account Balance: " + c.customer_saving.getBalance() + "\n");
+        sb.append("-----------------" + "\n"); 
+      }
+      System.out.println(sb);
+    }
   }
 }
 

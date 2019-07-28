@@ -45,5 +45,9 @@ public class SavingAccount extends Account {
 	  return savings_account_balance.checkBalance();
 	}
 	
+	public int getBalance() {
+      return savings_account_balance.checkBalance();
+    }
+	
 
 }

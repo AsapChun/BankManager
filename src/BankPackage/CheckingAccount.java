@@ -39,5 +39,9 @@ public class CheckingAccount extends Account{
 	  System.out.println("Amount currently in Checking Account: " + checking_account_balance.checkBalance()); 
 	}
 	
+	public int getBalance() {
+	  return checking_account_balance.checkBalance();
+	}
+	
 
 }
