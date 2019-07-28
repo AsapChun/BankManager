@@ -11,7 +11,7 @@ public class BankRunner {
     Bank bank = new Bank();
     while(exit) {
       System.out.println("What would you like to do?");
-      System.out.print("Options: 1. Account Management 2. Loans Management 3. Customer Management 4. Exit");
+      System.out.print("Options: 1. Account Management 2. Loans Management 3. Daily Report 4. Exit");
       //Account Manage (new accounts, existing, deposits)
       //Loan manage (new loans etc...)
       //Customer Management (check customers, ATM functionality)
@@ -51,9 +51,9 @@ public class BankRunner {
           break;
         case 2:
         //Customer Management (check customers, ATM functionality)
-          System.out.println("You have selected Customer Management!");
+          System.out.println("You have selected Loans Management!");
           System.out.println("What would you like to do?");
-          System.out.print("Options: 1. Check Account 2. Add New Account 3. Update Existing Account 4. Exit");
+          System.out.print("Options: ToDo 4. Exit");
           Scanner s = new Scanner(System.in);
           int i = s.nextInt();
           switch(i) {
@@ -68,9 +68,9 @@ public class BankRunner {
           }
           break;
         case 3:
-          System.out.println("You have selected Account Management!");
+          System.out.println("You have selected Daily Report!");
           System.out.println("What would you like to do?");
-          System.out.print("Options: 1. Check Accounts 2. Add New Account 3. Update Existing Account 4. Exit");
+          System.out.print("Options: Todo 4. Exit");
           Scanner y= new Scanner(System.in);
           int a = y.nextInt();
           switch(a) {

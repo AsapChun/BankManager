@@ -8,8 +8,9 @@ public class Bank {
   ArrayList<Loans> existingLoans = new ArrayList();
   ArrayList<Customer> Customers = new ArrayList();
   ArrayList<Account> Accounts = new ArrayList();
+  Report r;
   public Bank() {
-    
+    r = new Report();
   }
   
   //print exisitng stuff TODO
@@ -49,7 +50,7 @@ public class Bank {
     int year = scan.nextInt();
     System.out.println("Age?");
     int age = scan.nextInt();
-    System.out.println("Currency choice ($, ¥, €)");
+    System.out.println("Currency choice ($, ¥, €, £, ฿)");
     String currency = scan.next();
     Customer create = new Customer(name, day, month, year, age, currency);
     Customers.add(create);
