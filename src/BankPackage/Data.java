@@ -7,7 +7,6 @@ public class Data {
 	int birth_year;
 	int age; //not sure needed
 	
-	
 	public Data(String name, int day, int month, int year, int age) {
 		//age can be calculated, but for now we're lazy
 		this.customer_name = name;
@@ -15,6 +14,13 @@ public class Data {
 		this.birth_month = month;
 		this.birth_year = year;
 		this.age = age;
+	}
+	
+	public String toString() {
+		String returner = "";
+		returner = returner + customer_name + ", " + birth_month + "/" + birth_day + "/" + birth_year; 
+		return returner;
+		
 	}
 	
 	
@@ -38,9 +44,6 @@ public class Data {
 	public int getAge() {
 		return age;
 	}
-
-	
-	
 	
 	
 }

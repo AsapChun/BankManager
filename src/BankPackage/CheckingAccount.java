@@ -2,16 +2,17 @@ package BankPackage;
 
 public class CheckingAccount extends Account{
 	Balance checking_account_balance;
-	//Checking acount has its own balance
 	Data accountOwner;
-	
+	//Checking acount has its own balance
 	
 
-	public CheckingAccount() {
-		this.checking_account_balance = new Balance(); //these are parts of CheckingAccount
+	public CheckingAccount(Data user_info) {
+		this.accountOwner = user_info;
+		this.checking_account_balance = new Balance(); //initialized to 0
 	}
-	public CheckingAccount(int inital) {
-      this.checking_account_balance = new Balance(inital); //these are parts of CheckingAccount
+	public CheckingAccount(Data user_info, int inital) {
+		this.accountOwner = user_info;
+		this.checking_account_balance = new Balance(inital); //these are parts of CheckingAccount
   }
   
 	@Override

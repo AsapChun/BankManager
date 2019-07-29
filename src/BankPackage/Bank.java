@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class Bank {
   ArrayList<Loans> existingLoans = new ArrayList();
-  ArrayList<Customer> Customers = new ArrayList();
+  public static ArrayList<Customer> Customers = new ArrayList();
   ArrayList<Account> Accounts = new ArrayList();
-  Report r;
+  Report report;
   public Bank() {
-    r = new Report();
+    report = new Report();
   }
   
   //print exisitng stuff TODO
@@ -140,10 +140,10 @@ public class Bank {
       String name = scan.next();
       Iterator iter = Customers.iterator();
       while(iter.hasNext()) {
-        Customer c = (Customer) iter.next();
-        if(c.getName().equals(name)) {
+        Customer current_customer = (Customer) iter.next();
+        if(current_customer.getName().equals(name)) {
           exists = false;
-          c.printInformation();
+          current_customer.printInformation();
         }
       }
       if(exists) {
