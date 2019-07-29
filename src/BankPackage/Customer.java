@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Customer {
 	//Private customer attribute
 	Data user_info; //this will contain name, date of birth (not sure needed)
-	ArrayList<CheckingAccount> customer_checking = new ArrayList<CheckingAccount>();
-	ArrayList<SavingAccount> customer_saving = new ArrayList<SavingAccount>(); //will not be initialzied  in constructor, only in button
+	CheckingAccount customer_checking ;
+	SavingAccount customer_saving ; //will not be initialzied  in constructor, only in button
 	Loans customer_loan;
 	boolean collateral;
 	String Currency; //NEED TO CHANGE
@@ -21,19 +21,19 @@ public class Customer {
 	}
 	
 	public void create_checking() {
-		this.customer_checking.add(new CheckingAccount(user_info));
+		this.customer_checking = new CheckingAccount(user_info);
 	}
 	
-	public void add_checking(int inital, int account_number) {
-	  this.customer_checking.get(account_number).deposit(inital);
+	public void add_checking(int inital) {
+	  this.customer_checking.deposit(inital);;
 	}
 	
 	public void create_saving() {
-		this.customer_saving.add(new SavingAccount(this.user_info));
+		this.customer_saving = new SavingAccount(user_info);
 	}
 	
-	public void add_saving(int inital, int account_number) {
-      this.customer_saving.get(account_number).deposit(inital);
+	public void add_saving(int inital) {
+      this.customer_saving.deposit(inital);
     }
 	
 	public void takeLoans() {

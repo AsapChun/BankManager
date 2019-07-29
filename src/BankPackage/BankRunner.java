@@ -1,6 +1,7 @@
 package BankPackage;
 
 import javax.swing.*;
+import java.awt.FlowLayout;
 import java.awt.event.*;
 
 import java.util.Scanner;
@@ -8,12 +9,8 @@ import java.util.Scanner;
 /*
  * BankRunner is our main JFrame interface object
  * Customer and Manager is its own JFrame which we open  depending
- * 
- * 
  */
-		
-		
-		
+			
 public class BankRunner extends JFrame{
 	static Scanner scan = new Scanner(System.in); //Scanner object
 
@@ -24,6 +21,8 @@ public class BankRunner extends JFrame{
 		JPanel panel = new JPanel();
 		add(panel);
 		
+		panel.setLayout( new FlowLayout(FlowLayout.CENTER) );
+		panel.add( new JLabel( "Welcome to the Bank! Options:" ) );
 		panel.add( jbtManager );
 		panel.add( jbtCustomer );
 		  
@@ -47,7 +46,7 @@ public class BankRunner extends JFrame{
 	
 	
   public static void main(String[] args) {
-	  	Bank.Customers.add(new Customer("Ethan",19,12,1997,12,"Dollar"));
+	  	Bank.Customers.add(new Customer("Ethan",19,12,1997,12,"$"));
 	  //Create a JFrame instance of the BankRunner interface
 	    JFrame frame = new BankRunner();	
 
@@ -62,8 +61,6 @@ public class BankRunner extends JFrame{
   
   
   public void run() {
-	  
-		
 	    Boolean exit = true;
 	    System.out.println("Welcome Bank Manager!");
 	    Bank bank = new Bank();

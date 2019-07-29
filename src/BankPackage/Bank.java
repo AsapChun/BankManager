@@ -13,7 +13,6 @@ public class Bank {
    * Also added public + static keywords so it can be accesssed by Manager
    */
   
-  
   Report report;
   
   
