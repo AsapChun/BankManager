@@ -14,7 +14,23 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 	//totalCustomer will be used to create reports
 	Scanner scan = new Scanner(System.in);
 	
+	public class RegisterPage extends JFrame{
+		public RegisterPage() {
+			/*
+			 * Make another JFrame
+			 */
+		}
+	}
 	
+	public class LoginPage extends JFrame{
+		public LoginPage() {
+			/*
+			 * Ask for user info and bring them to their respective page
+			 */
+		}
+	}
+	
+		
 	public CustomerUI() {
 		//TO DO:
 		JButton btn_login = new JButton( "Log In" );
@@ -30,6 +46,12 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 		{
 		    public void actionPerformed(ActionEvent e) {
 		        //go to login page?
+		    	/*
+		    	 * Log in page, should bring them to their own special frame
+		    	 * They can create Checkings/Savings
+		    	 * Check their Accounts (both saving and checking)
+		    	 * Check loan amount/Make loans
+		    	 */
 		    }
 		});
 
@@ -38,6 +60,9 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 		{
 			public void actionPerformed(ActionEvent e) {
 				//go  to sign in page
+				/*
+				 * Do everything above except we neeed to register the data
+				 */
 			}
 
 		});

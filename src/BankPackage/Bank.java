@@ -5,10 +5,18 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Bank {
-  ArrayList<Loans> existingLoans = new ArrayList();
+  public static ArrayList<Loans> existingLoans = new ArrayList();
   public static ArrayList<Customer> Customers = new ArrayList();
-  ArrayList<Account> Accounts = new ArrayList();
+  /*
+   * Removed  Account since that should be in Customers class
+   * We can  access them through Customer, in that way we also provide information about the id
+   * Also added public + static keywords so it can be accesssed by Manager
+   */
+  
+  
   Report report;
+  
+  
   public Bank() {
     report = new Report();
   }
