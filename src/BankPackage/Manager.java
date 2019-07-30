@@ -21,8 +21,6 @@ public class Manager extends JFrame{
 		panel.add( btn_report );
 		panel.add(btn_loan_check);
 		
-		
-		
 		setSize( 800, 800 );
 		setLocation( 200, 100 );
 		setVisible( true );
@@ -77,9 +75,11 @@ public class Manager extends JFrame{
 			
 			for(int i = 0; i < panel.getComponentCount();i++) {
 				JButton toMod = (JButton) panel.getComponent(i);
+				int currently = i;
 				toMod.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//Show info
+						customerInfo current = new customerInfo(Bank.Customers.get(currently));
 					}
 				});
 			}
@@ -93,6 +93,7 @@ public class Manager extends JFrame{
 	/*
 	 * TODO: Add some stuff
 	 */
+	
 	
 	public class reportUI extends JFrame{
 		public reportUI() {
@@ -116,7 +117,7 @@ public class Manager extends JFrame{
 	
 	public class customerInfo extends JFrame{
 		//Call for individuals customer info
-		public customerInfo() {
+		public customerInfo(Customer individual) {
 			JPanel panel = new JPanel();
 			add(panel);
 			setSize( 800, 800 );

@@ -30,7 +30,6 @@ public class BankRunner extends JFrame{
 		{
 		    public void actionPerformed(ActionEvent e) {
 		        Manager manager_window = new Manager(); // Main Form to show after the Login Form..
-//		        dispose(); //closes the current window
 		    }
 		});
 
@@ -38,7 +37,6 @@ public class BankRunner extends JFrame{
 		{
 			public void actionPerformed(ActionEvent e) {
 				CustomerUI customer_window = new CustomerUI();
-				dispose();
 			}
 
 		});

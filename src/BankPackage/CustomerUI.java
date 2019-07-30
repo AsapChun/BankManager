@@ -27,7 +27,6 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			/*
 			 * Make another JFrame
 			 */
-			
 			JButton btn_register = new JButton( "Register" );
 			
 			JSpinner date = new JSpinner();
@@ -112,7 +111,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 	public class CreateCheckingsUI extends JFrame{
 		//Creates a checkings account popup
 		public CreateCheckingsUI(Customer info) {
-			
+			info.create_checking();
 		}
 	}
 	
