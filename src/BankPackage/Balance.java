@@ -6,13 +6,13 @@ public class Balance {
     public Balance() {
       Balance = 0;
     }
-    public Balance(int initial) {
+    public Balance(float initial) {
       Balance = initial;
     }
-    public void add(int i) {
-      Balance += i;
+    public void add(float amount) {
+      Balance += amount;
     }
-    public void subtract(int i) {
+    public void subtract(float i) {
       float check = Balance - i;
       if(check <= 0) {
         System.out.println("INVALID ACTION: insufficient balance");

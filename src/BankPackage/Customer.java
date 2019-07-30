@@ -32,16 +32,16 @@ public class Customer {
 		this.customer_checking = new CheckingAccount(user_info);
 	}
 	
-	public void add_checking(int inital) {
-	  this.customer_checking.deposit(inital);;
+	public void add_checking(float amount) {
+	  this.customer_checking.deposit(amount);;
 	}
 	
 	public void create_saving() {
 		this.customer_saving = new SavingAccount(user_info);
 	}
 	
-	public void add_saving(int inital) {
-      this.customer_saving.deposit(inital);
+	public void add_saving(float amount) {
+      this.customer_saving.deposit(amount);
     }
 	
 	public void takeLoans() {

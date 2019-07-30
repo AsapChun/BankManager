@@ -132,6 +132,10 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					float amount = Float.parseFloat(initial_balance.getText());
+					info.create_checking();
+					info.add_checking(amount);
+					CheckingsUI checkings = new CheckingsUI(info.customer_checking);
+					dispose();
 				}
 				
 			});
@@ -141,15 +145,55 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 	
 	public class CreateSavingsUI extends JFrame{
 		//Creates a savings account popup
-		public CreateSavingsUI(Customer info) {
-			
+			public CreateSavingsUI(Customer info) {
+				JButton Create_Savings = new JButton( "Create Savings" );
+				JLabel l1=new JLabel("Creating a Savings Account, please enter amount to deposit");  
+				JTextField initial_balance = new JTextField(8);
+				l1.setBounds(50,50, 100,30);  
+				JPanel panel = new JPanel();
+				add(panel);			
+				panel.add(l1);
+				panel.add(initial_balance);
+				panel.add(Create_Savings);
+				setSize( 800, 800 );
+				setLocation( 200, 100 );
+				setVisible( true );  
+				info.create_checking();
+				
+				
+				Create_Savings.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						float amount = Float.parseFloat(initial_balance.getText());
+						info.create_saving();
+						info.add_saving(amount);
+						SavingsUI checkings = new SavingsUI(info.customer_saving);
+						dispose();
+					}
+					
+				});
+				
+			}
 		}
-	}
 	
 	public class SavingsUI extends JFrame{
 		//if they have savings
 		public SavingsUI(SavingAccount info) {
 			
+			//use revalidate(); to refresh page
+			JButton Deposit = new JButton("Deposit");
+			JButton Withdraw = new JButton("Withdraw");
+			
+			JTextField deposit_field_1 = new JTextField(8);
+			JTextField withdraw_field_1 = new JTextField(8);
+			
+			JPanel panel = new JPanel();
+			add(panel);
+			panel.add(Deposit);
+			panel.add(Withdraw);
+			setSize( 800, 800 );
+			setLocation( 200, 100 );
+			setVisible( true );
 		}
 	}
 	
