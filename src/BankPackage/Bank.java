@@ -270,5 +270,67 @@ public class Bank {
       System.out.println(sb);
     }
   }
+  //create a new Loan
+  public void addLoans(){
+    System.out.println("You have selected to create a new Loan!");
+    System.out.println("Note: There is a $5 fee for creating a new loan!");
+    System.out.println("Do you wish to proceed? (Y/N)");
+    Scanner scan = new Scanner(System.in);
+    String input = scan.next();
+    if (input.equals("Y")) {
+      System.out.println("What is the name of the account?");
+      String in = scan.next();
+      Iterator iter = Customers.iterator();
+      Customer x;
+      float interest = 0;
+      int length = 0;
+      Boolean Notfound = true;
+      while(iter.hasNext()) {
+        Customer it = (Customer) iter.next();
+        x= it;
+        if(it.getName().equals(in)) {
+          Notfound = false;
+          System.out.println("Options for length of loan: 1. 3 month (0.05%) 2. 6 month (0.1%) 3. 6 month (0.15%)");
+          int add = scan.nextInt();
+          switch(add) {
+            case(1):
+              interest = (float) 0.05;
+              length = 3;
+              break;
+            case(2):
+              interest = (float) 0.1;
+              length = 6;
+              break;
+            case(3):
+              interest = (float) 0.15;
+              length = 12;
+              break;
+          }
+          System.out.println("Enter the value of loan that you wish: ");
+          int value = scan.nextInt();
+          earnings.add(5);
+          it.create_loan(value, interest, length);
+          System.out.println("Do you want to add loan to your: 1. Checking 2. Saving ");
+          int choice = scan.nextInt();
+          switch(choice) {
+            case 1:
+              x.add_checking(value);
+              break;
+            case 2:
+              x.add_saving(value);
+              break;
+          }
+          }   
+      }
+      if(Notfound) {
+        System.out.println("Customer Not Found!");
+      }
+    }else {
+      System.out.println("Loan process cancelled!");
+    }
+    
+  }
 }
+  
+
 

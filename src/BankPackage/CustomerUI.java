@@ -43,7 +43,6 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 					 * Do everything above except we need to register the data
 					 * Use JSpinner
 					 */
-					
 					Customer just_made = new Customer(); //DELETE LATER, MODIFY to fit whatever is typed in
 					CustomerHomepageUI registerpage = new CustomerHomepageUI(just_made);
 				}
