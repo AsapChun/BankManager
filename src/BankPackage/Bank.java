@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Bank {
   public static ArrayList<Loans> existingLoans = new ArrayList();
   public static ArrayList<Customer> Customers = new ArrayList();
+  Balance earnings;
   /*
    * Removed  Account since that should be in Customers class
    * We can  access them through Customer, in that way we also provide information about the id
@@ -21,6 +22,7 @@ public class Bank {
   
   public Bank() {
     report = new Report();
+    earnings = new Balance();
   }
   
   public static boolean findCustomer(String name, String password) {
@@ -87,9 +89,11 @@ public class Bank {
     String currency = scan.next();
     Customer create = new Customer(name, day, month, year, age, currency);
     Customers.add(create);
+    System.out.println("Note: The bank will chage a $5 fee for creating a new checking or savings account!");
     System.out.println("Do you want to add funds to your Checking Account? (Y/N)");
     String input = scan.next();
     if(input.equals("Y")) {
+      earnings.add(5);
       System.out.println("How much do you want to deposit?");
       int deposit = scan.nextInt();
       if(deposit < 0) {
@@ -104,6 +108,7 @@ public class Bank {
     System.out.println("Do you want to add funds to your new Saving Account? (Y/N)");
     String in = scan.next();
     if(in.equals("Y")) {
+      earnings.add(5);
       System.out.println("How much do you want to deposit?");
       int deposit = scan.nextInt();
       if(deposit < 0) {
@@ -182,6 +187,70 @@ public class Bank {
       if(exists) {
         System.out.println("Customer Does Not Exist!");
       }
+    }
+  }
+  // withdraw
+  public void withdrawAccount() {
+    System.out.println("You have selected to withdraw from a Customer's account!");
+    System.out.println("Note: The bank will chage a $5 fee for withdrawing from a account!");
+    System.out.println("Do you wish to proceed? (Y/N)");
+    Scanner scan = new Scanner(System.in);
+    String input = scan.next();
+    if (input.equals("Y")) {
+      System.out.println("What is the name of the account?");
+      String in = scan.next();
+      System.out.println("Which account do you want to withdraw from? 1. Checking 2. Savings");
+      int choice =  scan.nextInt();
+      System.out.println("How much do you want to withdraw?");
+      int amount = scan.nextInt();
+      Iterator iter = Customers.iterator();
+      Boolean Notfound = true;
+      while(iter.hasNext()) {
+        Customer it = (Customer) iter.next();
+        if(it.getName().equals(in)) {
+          if(choice == 1) { //checking
+            it.customer_checking.checking_account_balance.subtract(amount);
+            System.out.println(amount + " has been withdrawn!");
+          }else { //saving
+            it.customer_saving.savings_account_balance.subtract(amount);
+            System.out.println(amount + " has been withdrawn!");
+          }
+        }   
+      }
+      if(Notfound) {
+        System.out.println("Customer Not Found!");
+      }
+      
+    }else {
+      System.out.println("Withdraw process cancelled!");
+    }
+  }
+  //remove Customer account
+  public void RemoveCustomer() {
+    System.out.println("You have selected to close a Customer's account!");
+    System.out.println("Note: The bank will chage a $5 fee for closing a account!");
+    System.out.println("Do you wish to proceed? (Y/N)");
+    Scanner scan = new Scanner(System.in);
+    String input = scan.next();
+    if (input.equals("Y")) {
+      System.out.println("What is the name of the account?");
+      String in = scan.next();
+      Iterator iter = Customers.iterator();
+      Boolean Notfound = true;
+      while(iter.hasNext()) {
+        Customer it = (Customer) iter.next();
+        if(it.getName().equals(in)) {
+          Customers.remove(it);
+          earnings.add(5); 
+          Notfound = false;
+        }   
+      }
+      if(Notfound) {
+        System.out.println("Customer Not Found!");
+      }
+    }
+    else {
+      System.out.println("Closure process cancelled!");
     }
   }
   //print all customers
