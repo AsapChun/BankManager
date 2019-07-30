@@ -4,13 +4,20 @@ import java.util.ArrayList;
 
 public class Customer {
 	//Private customer attribute
+	/* TO DO:
+	 * Add Passwords to the class 
+	 */
 	Data user_info; //this will contain name, date of birth (not sure needed)
 	CheckingAccount customer_checking ;
-	SavingAccount customer_saving ; //will not be initialzied  in constructor, only in button
+	String Password;
+	SavingAccount customer_saving ; //will not be initialized  in constructor, only in button
 	Loans customer_loan;
 	boolean collateral;
 	String Currency; //NEED TO CHANGE
 	
+	public Customer() {
+		//Delete later, TESTING
+	}
 	
 	public Customer(String name, int day, int month, int year, int age, String curr) {
 		this.user_info = new Data(name, day, month, year, age);

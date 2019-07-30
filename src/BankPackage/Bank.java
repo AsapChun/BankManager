@@ -11,6 +11,9 @@ public class Bank {
    * Removed  Account since that should be in Customers class
    * We can  access them through Customer, in that way we also provide information about the id
    * Also added public + static keywords so it can be accesssed by Manager
+   * 
+   * TODO:
+   * makesure when Customer is created no duplicate  exist
    */
   
   Report report;
@@ -20,12 +23,35 @@ public class Bank {
     report = new Report();
   }
   
+  public static boolean findCustomer(String name, String password) {
+	  for(int i =0; i < Customers.size() ; i++) {
+		  if(Customers.get(i).getName() == name & Customers.get(i).Password == password) {
+			  return true;
+		  }
+	  }
+	  return false;
+  }
+  
+  public static Customer retrieveCustomer(String name, String password) {
+	  for(int i =0; i < Customers.size() ; i++) {
+		  if(Customers.get(i).getName() == name & Customers.get(i).Password == password) {
+			  return Customers.get(i);
+		  }
+	  }
+	  
+	  
+	  return null; //Note: Remember to remove/change blah blah blah
+	  
+  }
+  
   //print exisitng stuff TODO
   public void checkLoans() {
     Iterator iter = existingLoans.iterator();
     while(iter.hasNext()) {
       System.out.println((String) iter.next().toString());
     }
+    
+    
     
   }
   public void checkAccounts() {

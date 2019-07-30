@@ -26,6 +26,7 @@ public class Manager extends JFrame{
 		    public void actionPerformed(ActionEvent e) {
 		        //List the customers
 		    	for(int i = 0; i < Bank.Customers.size(); i++) {
+		    		// TODO: add a new JFrame to List all the customers, not sure how this will work
 		    		Customer toPrint = Bank.Customers.get(i);
 		    		System.out.println(toPrint.user_info);
 		    	}
@@ -35,20 +36,19 @@ public class Manager extends JFrame{
 		btn_report.addActionListener(new ActionListener() 
 		{
 		    public void actionPerformed(ActionEvent e) {
-		        //Show  Report
+		        //TODO: Create reports JFrame
 		    }
 		});
 		
 		btn_loan_check.addActionListener(new ActionListener() 
 		{
 		    public void actionPerformed(ActionEvent e) {
-		        //List the customers
+		        //TODO: Create Loan Jframe
 		    }
 		});
 		
 		setSize( 800, 800 );
 		setLocation( 200, 100 );
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
 		setVisible( true );
 	}
 

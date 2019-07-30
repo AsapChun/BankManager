@@ -1,7 +1,7 @@
 package BankPackage;
 
 public abstract class Account {
-  
+
 	//Withdraw
 	public abstract void withdraw(int amount);
 	
@@ -13,5 +13,9 @@ public abstract class Account {
 	
 	//pay current balance
 	public abstract void pay(int amount);
+	
+	
+	
+	
 	
 }
