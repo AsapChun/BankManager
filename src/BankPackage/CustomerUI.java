@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 
@@ -26,10 +27,13 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			/*
 			 * Make another JFrame
 			 */
+			
 			JButton btn_register = new JButton( "Register" );
 			
+			JSpinner date = new JSpinner();
 			JPanel panel = new JPanel();
 			add(panel);
+			panel.add(date);
 			panel.add(btn_register);
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
@@ -43,8 +47,10 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 					 * Do everything above except we need to register the data
 					 * Use JSpinner
 					 */
+					
 					Customer just_made = new Customer(); //DELETE LATER, MODIFY to fit whatever is typed in
 					CustomerHomepageUI registerpage = new CustomerHomepageUI(just_made);
+					dispose();
 				}
 
 			});
@@ -86,14 +92,17 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 				/*
 				 * Do everything above except we need to register the data
 				 */
-				String input_name = text_field_1.getSelectedText(); //gets the name
-				String password = password_field_1.getSelectedText(); //NOTE: Gotta handle null pnter
+				String input_name = text_field_1.getText(); //gets the name
+				String password = password_field_1.getText(); //NOTE: Gotta handle null pnter
 				if(Bank.findCustomer(input_name,password)) {
 					Customer retrieving = Bank.retrieveCustomer(input_name, password);
 					Customer existing = new Customer(); //DELETE LATER, SHOULD  CHECK DATABASE IF USER EXIST
 					//i.e. check Bank.CustomerList if exist -> else -> error
 					CustomerHomepageUI home_page = new CustomerHomepageUI(existing);
 				}
+				System.out.println(input_name); //DELETE LATER
+				System.out.println(password);
+				dispose();
 				//else do nothing
 			}
 		});
@@ -226,6 +235,4 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 
 		});
 	}
-		
-	
 }
