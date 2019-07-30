@@ -40,10 +40,37 @@ public class Bank {
 			  return Customers.get(i);
 		  }
 	  }
-	  
-	  
-	  return null; //Note: Remember to remove/change blah blah blah
-	  
+	  return null; //Note: Remember to remove/change blah blah blah	  
+  }
+  public String CreateReport() {
+    //Bank Balance
+    float BankBalance = earnings.checkBalance();
+    report.dailyReport.append("Total Bank's earnings: " + BankBalance + "\n");
+    Iterator iter = Customers.iterator();
+    report.dailyReport.append("----------------------------------------");
+    Boolean checkCustomer = true;
+    //Customer Report
+    report.dailyReport.append("Bank's Customers Report: " + "\n");
+    while(iter.hasNext()) {
+      checkCustomer = false;
+      Customer c = (Customer) iter.next();
+      String name = c.getName();
+      float checkingBalance = c.customer_checking.getBalance();
+      float savingBalance = c.customer_saving.getBalance();
+      String currency = c.Currency;
+      report.dailyReport.append("*" + name +"'s Account Details: *" + "/n");
+      report.dailyReport.append("       Checking Account Balance - " + currency + checkingBalance  + "Saving Account Balance - "+ currency + savingBalance);
+      report.dailyReport.append("       Current Loan - " + c.customer_loan.value + "; Length of Loan - "+ c.customer_loan.lengthOfLoan + "months; interest rate - "+ c.customer_loan.interest);
+      report.dailyReport.append("----------------------------------------");
+    }
+    if(checkCustomer) {
+      report.dailyReport.append("No Customer Accounts on file!");
+    } 
+    return report.dailyReport.toString();
+  }
+  public void printReport() {
+    String report = CreateReport();
+    System.out.println(report);
   }
   
   //print exisitng stuff TODO
