@@ -181,19 +181,27 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 		public SavingsUI(SavingAccount info) {
 			
 			//use revalidate(); to refresh page
-			JButton Deposit = new JButton("Deposit");
-			JButton Withdraw = new JButton("Withdraw");
-			
 			JTextField deposit_field_1 = new JTextField(8);
+			JButton Deposit = new JButton("Deposit");
 			JTextField withdraw_field_1 = new JTextField(8);
+			JButton Withdraw = new JButton("Withdraw");
 			
 			JPanel panel = new JPanel();
 			add(panel);
+			
+			panel.add(new JLabel("Your current Savings Balance is " + info.getBalance()));
 			panel.add(Deposit);
 			panel.add(Withdraw);
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );
+			
+			Deposit.addActionListener(new ActionListener() 
+			{
+			    public void actionPerformed(ActionEvent e) {
+			    	
+			    }
+			});
 		}
 	}
 	
@@ -223,7 +231,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			panel.add(checking);
 			panel.add(savings);
 			panel.add(loans);
-			panel.add(new JLabel("Welcome" + current_customer.getName()));
+			panel.add(new JLabel("Welcome " + current_customer.getName()));
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );

@@ -15,14 +15,14 @@ public class SavingAccount extends Account {
     }
 
 	@Override
-	public void withdraw(int amount) {
+	public void withdraw(float amount) {
 		// TODO Auto-generated method stub
 	    savings_account_balance.subtract(amount);
 		
 	}
 
 	@Override
-	public void deposit(int amount) {
+	public void deposit(float amount) {
 		// TODO Auto-generated method stub
 	    savings_account_balance.add(amount);
 	}
