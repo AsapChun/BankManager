@@ -16,7 +16,7 @@ public class Customer {
 	String Currency; //NEED TO CHANGE
 	
 	public Customer() {
-		//Delete later, TESTING
+		//Delete later, TESTING THIS MUST NOT EXIST
 	}
 	
 	public Customer(String name, int day, int month, int year, int age, String curr) {

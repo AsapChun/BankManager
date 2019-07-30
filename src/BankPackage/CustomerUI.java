@@ -17,6 +17,10 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 	//totalCustomer will be used to create reports
 	Scanner scan = new Scanner(System.in);
 	
+	/*
+	 * --------------------------------Additional JFRAMES --------------------------------------------
+	 */
+	
 	public class RegisterPageUI extends JFrame{
 		public RegisterPageUI() {
 			/*
@@ -94,13 +98,46 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 		}
 	}
 	
+	public class CreateCheckingsUI extends JFrame{
+		//Creates a checkings account popup
+		public CreateCheckingsUI(Customer info) {
+			
+		}
+	}
+	
+	public class CreateSavingsUI extends JFrame{
+		//Creates a savings account popup
+		public CreateSavingsUI(Customer info) {
+			
+		}
+	}
+	
+	public class SavingsUI extends JFrame{
+		//if they have savings
+		public SavingsUI(SavingAccount info) {
+			
+		}
+	}
+	
+	public class CheckingsUI extends JFrame{
+		//if they have checkings
+		public CheckingsUI(CheckingAccount info) {
+			
+		}
+	}
+	
+	
+	/*
+	 * ---------------------------------------------IMPORTANT JFRAME---------------------------------------
+	 */
+	
 	public class CustomerHomepageUI extends JFrame{
 		public CustomerHomepageUI(Customer current_customer) {
 			/*
 			 * Inside CustomerUI actual main interface - i.e. has to go through validation or make a new one
-			 * TODO: Show Customer Name using Jlabel?
-			 * Make Loan Button 
+			 * TODO: 			 * Make Loan Button 
 			 */
+			
 			JButton checking = new JButton( "Checkings" );
 			JButton savings = new JButton( "Savings" );
 			JButton loans = new JButton("Loan");
@@ -109,6 +146,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			panel.add(checking);
 			panel.add(savings);
 			panel.add(loans);
+			panel.add(new JLabel("Welcome" + current_customer.getName()));
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );
@@ -142,33 +180,10 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 		}
 	}
 	
-	public class CreateCheckingsUI extends JFrame{
-		//Creates a checkings account popup
-		public CreateCheckingsUI(Customer info) {
-			
-		}
-	}
 	
-	public class CreateSavingsUI extends JFrame{
-		//Creates a savings account popup
-		public CreateSavingsUI(Customer info) {
-			
-		}
-	}
-	
-	public class SavingsUI extends JFrame{
-		//if they have savings
-		public SavingsUI(SavingAccount info) {
-			
-		}
-	}
-	
-	public class CheckingsUI extends JFrame{
-		//if they have checkings
-		public CheckingsUI(CheckingAccount info) {
-			
-		}
-	}
+	/*
+	 * --------------------------------MAIN JFRAME --------------------------------------------
+	 */
 			
 	public CustomerUI() {
 		JButton btn_login = new JButton( "Log In" );
