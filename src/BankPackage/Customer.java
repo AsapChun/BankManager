@@ -26,6 +26,9 @@ public class Customer {
 		create_saving();
 		Currency =  curr;
 	}
+	public void create_loan(int total, float Rate, int length) {
+	  customer_loan = new Loans(total, Rate, length);
+	}
 	
 	public void create_checking() {
 		this.customer_checking = new CheckingAccount(user_info);
