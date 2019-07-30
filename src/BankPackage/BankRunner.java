@@ -38,7 +38,7 @@ public class BankRunner extends JFrame{
 		{
 			public void actionPerformed(ActionEvent e) {
 				CustomerUI customer_window = new CustomerUI();
-//				dispose();
+				dispose();
 			}
 
 		});
@@ -47,6 +47,7 @@ public class BankRunner extends JFrame{
 	
   public static void main(String[] args) {
 	  	Bank.Customers.add(new Customer("Ethan",19,12,1997,12,"$"));
+	  	Bank.Customers.add(new Customer("Sean",12,12,1222,12,"$"));
 	  //Create a JFrame instance of the BankRunner interface
 	    JFrame frame = new BankRunner();	
 

@@ -1,7 +1,7 @@
 package BankPackage;
 
 public class Data {
-	String customer_name;
+	String customer_name = "";
 	int birth_day;
 	int birth_month;
 	int birth_year;

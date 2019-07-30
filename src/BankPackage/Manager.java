@@ -64,6 +64,7 @@ public class Manager extends JFrame{
 	
 	public class customerListUI extends JFrame {
 		public customerListUI() {
+			//super();
 			JPanel panel = new JPanel();
 			add(panel);
 			/*
@@ -71,7 +72,7 @@ public class Manager extends JFrame{
 			 * Purpose: adds a button to Jframe for every customer in our databse
 			 */
 			for(int i = 0; i < Bank.Customers.size(); i++) {
-				panel.add(new JButton((i+1) + Bank.Customers.get(i).getName()));
+				panel.add(new JButton((i+1) + " " + Bank.Customers.get(i).getName()));
 			}
 			
 			for(int i = 0; i < panel.getComponentCount();i++) {
