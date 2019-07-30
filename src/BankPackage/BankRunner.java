@@ -46,9 +46,9 @@ public class BankRunner extends JFrame{
   public static void main(String[] args) {
 	  	Bank.Customers.add(new Customer("Ethan",19,12,1997,12,"$"));
 	  	Bank.Customers.add(new Customer("Sean",12,12,1222,12,"$"));
+	  	Bank.Customers.get(0).Password = "0";
 	  //Create a JFrame instance of the BankRunner interface
 	    JFrame frame = new BankRunner();	
-
 		// Initialize frame information
 		frame.setTitle( "Main Menu" );
 		frame.setSize( 800, 800 );

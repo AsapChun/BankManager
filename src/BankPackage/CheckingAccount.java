@@ -40,7 +40,7 @@ public class CheckingAccount extends Account{
 	  System.out.println("Amount currently in Checking Account: " + checking_account_balance.checkBalance()); 
 	}
 	
-	public int getBalance() {
+	public float getBalance() {
 	  return checking_account_balance.checkBalance();
 	}
 	

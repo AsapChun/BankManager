@@ -1,7 +1,8 @@
 package BankPackage;
 
 public class Balance {
-    int Balance;
+    float Balance;
+    
     public Balance() {
       Balance = 0;
     }
@@ -12,14 +13,14 @@ public class Balance {
       Balance += i;
     }
     public void subtract(int i) {
-      int check = Balance - i;
+      float check = Balance - i;
       if(check <= 0) {
         System.out.println("INVALID ACTION: insufficient balance");
       }else {
         Balance -= i;
       }
     }
-    public int checkBalance() {
+    public float checkBalance() {
       return Balance;
     }
 }

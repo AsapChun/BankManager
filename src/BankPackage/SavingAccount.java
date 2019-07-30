@@ -41,11 +41,11 @@ public class SavingAccount extends Account {
 		
 	}
 	
-	public int getAmount() {
+	public float getAmount() {
 	  return savings_account_balance.checkBalance();
 	}
 	
-	public int getBalance() {
+	public float getBalance() {
       return savings_account_balance.checkBalance();
     }
 	

@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -95,13 +97,13 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 				String password = password_field_1.getText(); //NOTE: Gotta handle null pnter
 				if(Bank.findCustomer(input_name,password)) {
 					Customer retrieving = Bank.retrieveCustomer(input_name, password);
-					Customer existing = new Customer(); //DELETE LATER, SHOULD  CHECK DATABASE IF USER EXIST
 					//i.e. check Bank.CustomerList if exist -> else -> error
-					CustomerHomepageUI home_page = new CustomerHomepageUI(existing);
+					CustomerHomepageUI home_page = new CustomerHomepageUI(retrieving);
+					System.out.println("Found him");
 				}
 				System.out.println(input_name); //DELETE LATER
 				System.out.println(password);
-				dispose();
+//				dispose();
 				//else do nothing
 			}
 		});
@@ -111,7 +113,29 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 	public class CreateCheckingsUI extends JFrame{
 		//Creates a checkings account popup
 		public CreateCheckingsUI(Customer info) {
+			JButton Create_Checkings = new JButton( "Create Checkings" );
+			JLabel l1=new JLabel("Creating a Checking Account, please enter amount to deposit");  
+			JTextField initial_balance = new JTextField(8);
+			l1.setBounds(50,50, 100,30);  
+			JPanel panel = new JPanel();
+			add(panel);			
+			panel.add(l1);
+			panel.add(initial_balance);
+			panel.add(Create_Checkings);
+			setSize( 800, 800 );
+			setLocation( 200, 100 );
+			setVisible( true );  
 			info.create_checking();
+			
+			
+			Create_Checkings.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					float amount = Float.parseFloat(initial_balance.getText());
+				}
+				
+			});
+			
 		}
 	}
 	
@@ -147,7 +171,6 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			 * Inside CustomerUI actual main interface - i.e. has to go through validation or make a new one
 			 * TODO: 			 * Make Loan Button 
 			 */
-			
 			JButton checking = new JButton( "Checkings" );
 			JButton savings = new JButton( "Savings" );
 			JButton loans = new JButton("Loan");
@@ -164,6 +187,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			checking.addActionListener(new ActionListener() 
 			{
 			    public void actionPerformed(ActionEvent e) {
+			    	System.out.println(current_customer.customer_checking);
 			       if(current_customer.customer_checking == null) {
 			    	   //Customer needs to create 1
 			    	   CreateCheckingsUI making_one = new CreateCheckingsUI(current_customer);

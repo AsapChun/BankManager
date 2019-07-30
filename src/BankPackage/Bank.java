@@ -27,7 +27,7 @@ public class Bank {
   
   public static boolean findCustomer(String name, String password) {
 	  for(int i =0; i < Customers.size() ; i++) {
-		  if(Customers.get(i).getName() == name & Customers.get(i).Password == password) {
+		  if(Customers.get(i).getName().equals(name) & Customers.get(i).Password.equals(password)) {
 			  return true;
 		  }
 	  }
@@ -36,7 +36,7 @@ public class Bank {
   
   public static Customer retrieveCustomer(String name, String password) {
 	  for(int i =0; i < Customers.size() ; i++) {
-		  if(Customers.get(i).getName() == name & Customers.get(i).Password == password) {
+		  if(Customers.get(i).getName().equals(name) & Customers.get(i).Password.equals(password)) {
 			  return Customers.get(i);
 		  }
 	  }

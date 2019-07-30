@@ -9,7 +9,7 @@ public class Customer {
 	 */
 	Data user_info; //this will contain name, date of birth (not sure needed)
 	CheckingAccount customer_checking ;
-	String Password;
+	String Password = "";
 	SavingAccount customer_saving ; //will not be initialized  in constructor, only in button
 	Loans customer_loan;
 	boolean collateral;
@@ -22,8 +22,6 @@ public class Customer {
 	public Customer(String name, int day, int month, int year, int age, String curr) {
 		this.user_info = new Data(name, day, month, year, age);
 		//we should ask for collateral info?
-		create_checking();
-		create_saving();
 		Currency =  curr;
 	}
 	public void create_loan(int total, float Rate, int length) {
@@ -56,8 +54,9 @@ public class Customer {
 		//if savings TO DO:
 		
 	}
+	
 	public String getName() {
-	  return this.user_info.getCustomer_name();
+	  return this.user_info.customer_name;
 	}
 	
 	public void printInformation() {
