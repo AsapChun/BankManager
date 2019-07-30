@@ -21,6 +21,8 @@ public class Manager extends JFrame{
 		panel.add( btn_report );
 		panel.add(btn_loan_check);
 		
+		
+		
 		setSize( 800, 800 );
 		setLocation( 200, 100 );
 		setVisible( true );
@@ -34,6 +36,7 @@ public class Manager extends JFrame{
 		    		Customer toPrint = Bank.Customers.get(i);
 		    		System.out.println(toPrint.user_info);
 		    	}
+		    	customerListUI customerlist = new  customerListUI();
 		    }
 		});
 		
@@ -41,6 +44,7 @@ public class Manager extends JFrame{
 		{
 		    public void actionPerformed(ActionEvent e) {
 		        //TODO: Create reports JFrame
+		    	
 		    }
 		});
 		
@@ -48,6 +52,7 @@ public class Manager extends JFrame{
 		{
 		    public void actionPerformed(ActionEvent e) {
 		        //TODO: Create Loan Jframe
+		    	loanCheckerUI loancheck = new  loanCheckerUI();
 		    }
 		});
 		
@@ -77,8 +82,6 @@ public class Manager extends JFrame{
 					}
 				});
 			}
-			
-			
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );
@@ -86,12 +89,39 @@ public class Manager extends JFrame{
 		}
 	}
 	
+	/*
+	 * TODO: Add some stuff
+	 */
+	
 	public class reportUI extends JFrame{
-		
+		public reportUI() {
+			JPanel panel = new JPanel();
+			add(panel);
+			setSize( 800, 800 );
+			setLocation( 200, 100 );
+			setVisible( true );
+		}
 	}
 	
 	public class loanCheckerUI extends JFrame{
-		
+		public loanCheckerUI() {
+			JPanel panel = new JPanel();
+			add(panel);
+			setSize( 800, 800 );
+			setLocation( 200, 100 );
+			setVisible( true );
+		}
+	}
+	
+	public class customerInfo extends JFrame{
+		//Call for individuals customer info
+		public customerInfo() {
+			JPanel panel = new JPanel();
+			add(panel);
+			setSize( 800, 800 );
+			setLocation( 200, 100 );
+			setVisible( true );
+		}
 	}
 	
 	
