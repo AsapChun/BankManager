@@ -51,6 +51,7 @@ public class Customer {
 	  }
       report.append(name + "'s Loans: " + "\n");
       report.append("          - Amount: "+ customer_loan.value +"; Interest Rate: " + customer_loan.interest+ "; Length of Loan:  " + customer_loan.lengthOfLoan + "\n");
+      report.append("          - Total Repayment - " + Currency + customer_loan.totalRepayment()+ "\n");
       report.append("----------------End of Customer Report------------------"+ "\n");
 	  
 	  return report.toString();

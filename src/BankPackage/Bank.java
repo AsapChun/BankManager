@@ -77,7 +77,8 @@ public class Bank {
       if(c.customer_loan == null) {
         report.dailyReport.append("       Current Loan - Does not exist!" + "\n");
       } else {
-        report.dailyReport.append("       Current Loan - " + c.customer_loan.value + "; Length of Loan - "+ c.customer_loan.lengthOfLoan + " months; interest rate - "+ c.customer_loan.interest+ "\n");
+        report.dailyReport.append("       Current Loan - " + currency + c.customer_loan.value + "; Length of Loan - "+ c.customer_loan.lengthOfLoan + " months; interest rate - "+ c.customer_loan.interest+ "\n");
+        report.dailyReport.append("       Total Repayment - " + currency+ c.customer_loan.totalRepayment()+ "\n");
       }
       report.dailyReport.append("----------------------------------------"+ "\n");
     }
@@ -107,8 +108,8 @@ public class Bank {
       int value = loan.value;
       LoanReport.append("Customer Name : "+ name + "\n");
       LoanReport.append("      Loan Value: " + value + ";Loan Interest Rate: " + interest + "; Loan Length: "+ length + " months" + "\n");
+      LoanReport.append("       Total Repayment - " + c.Currency + c.customer_loan.totalRepayment()+ "\n");
       LoanReport.append("----------------------------------------------------------" + "\n");
-      LoanReport.append( "\n");
     }
     if(check) {
       LoanReport.append("No Loans on File!");
