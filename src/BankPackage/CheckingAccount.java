@@ -9,6 +9,7 @@ public class CheckingAccount extends Account{
 	public CheckingAccount(Data user_info) {
 		this.accountOwner = user_info;
 		this.checking_account_balance = new Balance(); //initialized to 0
+		
 	}
 	public CheckingAccount(Data user_info, int inital) {
 		this.accountOwner = user_info;

@@ -6,12 +6,14 @@ import java.util.Scanner;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
@@ -296,6 +298,60 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			});
 		}
 	}
+	
+	public class createLoansUI extends JFrame{
+		public createLoansUI(Customer current) {
+			JLabel interest_info = new JLabel("Choose the interest rate");
+			ButtonGroup interestOptions = new ButtonGroup();
+			JRadioButton option1 = new JRadioButton("1 Month: 3% interest rate");
+			JRadioButton option2 = new JRadioButton("3 Month: 5% interest rate");
+			JRadioButton option3 = new JRadioButton("6 Month: 8% interest rate");
+			interestOptions.add(option1);
+			interestOptions.add(option2);
+			interestOptions.add(option3);
+			
+			JPanel panel = new JPanel();
+			add(panel);
+			
+			panel.add(interest_info);
+			panel.add(option1);
+			panel.add(option2);
+			panel.add(option3);
+			setSize( 1200, 600 );
+			setLocation( 200, 100 );
+			setVisible( true );
+			
+			option1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					System.out.println("clicked");
+					current.customer_loan.interest = (float) 0.03;
+					dispose();
+				}	
+			});
+			
+			option2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					System.out.println("Clicked");
+					current.customer_loan.interest = (float) 0.05;
+					dispose();
+				}	
+			});
+			
+			option3.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					System.out.println("clciked");
+					current.customer_loan.interest = (float) 0.08;
+					dispose();
+					
+				}	
+			});
+			
+			
+		}
+	}
 		
 	public class LoansUI extends JFrame{
 		public LoansUI(Customer current) {
@@ -316,16 +372,15 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			}
 			
 			JLabel intro = new JLabel("Your current Loans is " +  current.customer_loan.value + condition );
-			JLabel can_loan = new JLabel("");
 			panel.add(intro);
 			
 			panel.add(take_field_1);
 			panel.add(TakeLoan);
-			panel.add(repay_field_1);
-			panel.add(Repay);
+//			panel.add(repay_field_1);
+//			panel.add(Repay);
 			panel.add(addCollateral);
-			
-			setSize( 800, 400 );
+						
+			setSize( 1200, 600 );
 			setLocation( 200, 100 );
 			setVisible( true );
 			
@@ -335,7 +390,10 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 					if(current.collateral == false) {
 						current.collateral = true;
 						intro.setText("Your current Loans is " +  current.customer_loan.value + " and you have a collateral now");
-					}	
+					}
+					if(current.collateral == true & current.customer_loan.value == 0) {
+						createLoansUI createnew = new createLoansUI(current);
+					}
 				}	
 			});
 			
