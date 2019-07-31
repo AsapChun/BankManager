@@ -1,10 +1,12 @@
 package BankPackage;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Manager extends JFrame{
@@ -42,6 +44,7 @@ public class Manager extends JFrame{
 		{
 		    public void actionPerformed(ActionEvent e) {
 		        //TODO: Create reports JFrame
+		        reportUI report = new reportUI();
 		    	
 		    }
 		});
@@ -96,12 +99,15 @@ public class Manager extends JFrame{
 	
 	
 	public class reportUI extends JFrame{
-		public reportUI() {
+		public reportUI(Bank b) {
 			JPanel panel = new JPanel();
 			add(panel);
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );
+			String report = b.getReport();
+			JLabel lab = new JLabel(report);
+            panel.add(lab);
 		}
 	}
 	

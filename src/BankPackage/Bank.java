@@ -44,6 +44,7 @@ public class Bank {
   }
   public String CreateReport() {
     //Bank Balance
+    report.resetReport();
     float BankBalance = earnings.checkBalance();
     report.dailyReport.append("Total Bank's earnings: " + BankBalance + "\n");
     Iterator iter = Customers.iterator();
@@ -68,9 +69,9 @@ public class Bank {
     } 
     return report.dailyReport.toString();
   }
-  public void printReport() {
+  public String getReport() {
     String report = CreateReport();
-    System.out.println(report);
+    return report;
   }
   
   //print exisitng stuff TODO
