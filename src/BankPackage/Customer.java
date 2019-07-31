@@ -28,16 +28,18 @@ public class Customer {
 	  customer_loan = new Loans(total, Rate, length);
 	}
 	
-	public void create_checking() {
+	public void create_checking(float initial) {
 		this.customer_checking = new CheckingAccount(user_info);
+		this.customer_checking.deposit(initial - 5);
 	}
 	
 	public void add_checking(float amount) {
 	  this.customer_checking.deposit(amount);;
 	}
 	
-	public void create_saving() {
+	public void create_saving(float initial) {
 		this.customer_saving = new SavingAccount(user_info);
+		this.customer_saving.deposit(initial - 5);
 	}
 	
 	public void add_saving(float amount) {

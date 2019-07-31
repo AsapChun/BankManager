@@ -125,15 +125,13 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );  
-			info.create_checking();
 			
 			
 			Create_Checkings.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					float amount = Float.parseFloat(initial_balance.getText());
-					info.create_checking();
-					info.add_checking(amount);
+					info.create_checking(amount);
 					CheckingsUI checkings = new CheckingsUI(info.customer_checking);
 					dispose();
 				}
@@ -158,15 +156,13 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 				setSize( 800, 800 );
 				setLocation( 200, 100 );
 				setVisible( true );  
-				info.create_checking();
 				
 				
 				Create_Savings.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						float amount = Float.parseFloat(initial_balance.getText());
-						info.create_saving();
-						info.add_saving(amount);
+						info.create_saving(amount);
 						SavingsUI checkings = new SavingsUI(info.customer_saving);
 						dispose();
 					}
@@ -265,7 +261,30 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			});
 		}
 	}
-	
+		
+	public class LoansUI extends JFrame{
+		public LoansUI(Customer current) {
+			JTextField take_field_1 = new JTextField(8);
+			JButton TakeLoan = new JButton("Take Loan");
+			JTextField repay_field_1 = new JTextField(8);
+			JButton Repay = new JButton("Repay Loan");
+			
+			JPanel panel = new JPanel();
+			add(panel);
+			
+			JLabel intro = new JLabel("Your current Loans is ");
+			JLabel can_loan = new JLabel("");
+			panel.add(intro);
+			
+			panel.add(take_field_1);
+			panel.add(TakeLoan);
+			panel.add(repay_field_1);
+			panel.add(Repay);
+			setSize( 800, 800 );
+			setLocation( 200, 100 );
+			setVisible( true );
+		}
+	}
 	
 	/*
 	 * ---------------------------------------------IMPORTANT JFRAME---------------------------------------
@@ -316,6 +335,14 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			       }
 			    }
 			});
+			
+			loans.addActionListener(new ActionListener() 
+			{
+			    public void actionPerformed(ActionEvent e) {	
+			    	LoansUI loans = new LoansUI(current_customer);
+			    }
+			});
+			
 		
 		}
 	}
