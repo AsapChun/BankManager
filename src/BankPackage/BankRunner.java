@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class BankRunner extends JFrame{
 	static Scanner scan = new Scanner(System.in); //Scanner object
 
-	public BankRunner(Bank b) { //Create an instance of the Interface
+	public BankRunner(Bank bank) { //Create an instance of the Interface
 		JButton jbtManager = new JButton( "Manager" );
 		JButton jbtCustomer = new JButton( "Customer" );
 		
@@ -29,7 +29,7 @@ public class BankRunner extends JFrame{
 		jbtManager.addActionListener(new ActionListener() 
 		{
 		    public void actionPerformed(ActionEvent e) {
-		        Manager manager_window = new Manager(); // Main Form to show after the Login Form..
+		        Manager manager_window = new Manager(bank); // Main Form to show after the Login Form..
 		    }
 		});
 
@@ -44,12 +44,12 @@ public class BankRunner extends JFrame{
 	
 	
   public static void main(String[] args) {
-        Bank b = new Bank();
+        Bank bank = new Bank();
 	  	Bank.Customers.add(new Customer("Ethan",19,12,1997,12,"$"));
 	  	Bank.Customers.add(new Customer("Sean",12,12,1222,12,"$"));
 	  	Bank.Customers.get(0).Password = "0";
 	  //Create a JFrame instance of the BankRunner interface
-	    JFrame frame = new BankRunner(b);	
+	    JFrame frame = new BankRunner(bank);	
 		// Initialize frame information
 		frame.setTitle( "Main Menu" );
 		frame.setSize( 800, 800 );

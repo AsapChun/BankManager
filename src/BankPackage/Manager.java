@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class Manager extends JFrame{
 	
-	public Manager() {
+	public Manager(Bank bank) {
 		JButton btn_customer_list = new JButton("Customers List");//List all of the Customer
 		JButton btn_report = new JButton("Report");
 		JButton btn_loan_check = new JButton("Loan Check");
@@ -44,7 +44,7 @@ public class Manager extends JFrame{
 		{
 		    public void actionPerformed(ActionEvent e) {
 		        //TODO: Create reports JFrame
-		        reportUI report = new reportUI();
+		        reportUI report = new reportUI(bank);
 		    	
 		    }
 		});
@@ -99,13 +99,13 @@ public class Manager extends JFrame{
 	
 	
 	public class reportUI extends JFrame{
-		public reportUI(Bank b) {
+		public reportUI(Bank bank) {
 			JPanel panel = new JPanel();
 			add(panel);
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );
-			String report = b.getReport();
+			String report = bank.getReport();
 			JLabel lab = new JLabel(report);
             panel.add(lab);
 		}

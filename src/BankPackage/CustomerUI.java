@@ -189,8 +189,12 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			JPanel panel = new JPanel();
 			add(panel);
 			
-			panel.add(new JLabel("Your current Savings Balance is " + info.getBalance()));
+			JLabel intro = new JLabel("Your current Savings Balance is " + info.getBalance());
+			panel.add(intro);
+			
+			panel.add(deposit_field_1);
 			panel.add(Deposit);
+			panel.add(withdraw_field_1);
 			panel.add(Withdraw);
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
@@ -199,7 +203,20 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			Deposit.addActionListener(new ActionListener() 
 			{
 			    public void actionPerformed(ActionEvent e) {
-			    	
+			    	float amount = Float.parseFloat(deposit_field_1.getText());
+			    	info.deposit(amount);
+			    	System.out.println(info.getBalance());
+			    	intro.setText("Your current Savings Balance is " + info.getBalance());
+			    }
+			});
+			
+			Withdraw.addActionListener(new ActionListener() 
+			{
+			    public void actionPerformed(ActionEvent e) {
+			    	float amount = Float.parseFloat(deposit_field_1.getText());
+			    	info.withdraw(amount);
+			    	System.out.println(info.getBalance());
+			    	intro.setText("Your current Savings Balance is " + info.getBalance());
 			    }
 			});
 		}
@@ -208,7 +225,44 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 	public class CheckingsUI extends JFrame{
 		//if they have checkings
 		public CheckingsUI(CheckingAccount info) {
+			JTextField deposit_field_1 = new JTextField(8);
+			JButton Deposit = new JButton("Deposit");
+			JTextField withdraw_field_1 = new JTextField(8);
+			JButton Withdraw = new JButton("Withdraw");
 			
+			JPanel panel = new JPanel();
+			add(panel);
+			
+			JLabel intro = new JLabel("Your current Checkings Balance is " + info.getBalance());
+			panel.add(intro);
+			
+			panel.add(deposit_field_1);
+			panel.add(Deposit);
+			panel.add(withdraw_field_1);
+			panel.add(Withdraw);
+			setSize( 800, 800 );
+			setLocation( 200, 100 );
+			setVisible( true );
+			
+			Deposit.addActionListener(new ActionListener() 
+			{
+			    public void actionPerformed(ActionEvent e) {
+			    	float amount = Float.parseFloat(deposit_field_1.getText());
+			    	info.deposit(amount);
+			    	System.out.println(info.getBalance());
+			    	intro.setText("Your current Checkings Balance is " + info.getBalance());
+			    }
+			});
+			
+			Withdraw.addActionListener(new ActionListener() 
+			{
+			    public void actionPerformed(ActionEvent e) {
+			    	float amount = Float.parseFloat(deposit_field_1.getText());
+			    	info.withdraw(amount);
+			    	System.out.println(info.getBalance());
+			    	intro.setText("Your current Savings Balance is " + info.getBalance());
+			    }
+			});
 		}
 	}
 	
