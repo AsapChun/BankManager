@@ -30,11 +30,40 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			 * Make another JFrame
 			 */
 			JButton btn_register = new JButton( "Register" );
+			JLabel name = new JLabel("Name");
+			JLabel date = new JLabel("Date of Birth (Month/Day/Year)");
+			JLabel age = new JLabel("Age");
+			JLabel spaces = new JLabel("                                      ");
+			JLabel currency = new JLabel("Currency");
+			JLabel password = new JLabel("Password");
 			
-			JSpinner date = new JSpinner();
+			JTextField name_field = new JTextField(8);
+			JTextField currency_field = new JTextField(8);
+			JTextField day_field = new JTextField(2);
+			JTextField month_field = new JTextField(2);
+			JTextField year_field = new JTextField(4);
+			JTextField age_field = new JTextField(2);
+			JPasswordField password_field_1 = new JPasswordField(8);
+			
 			JPanel panel = new JPanel();
 			add(panel);
+			
+			
+			panel.add(name);
+			panel.add(name_field);
+			panel.add(password);
+			panel.add(password_field_1);
 			panel.add(date);
+			panel.add(month_field);
+			panel.add(day_field);
+			panel.add(year_field);
+			panel.add(age);
+			panel.add(age_field);
+			panel.add(spaces);
+			panel.add(currency);
+			panel.add(currency_field);
+	
+			
 			panel.add(btn_register);
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
@@ -43,13 +72,14 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			btn_register.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e) {
-					//go  to sign in page
-					/*
-					 * Do everything above except we need to register the data
-					 * Use JSpinner
-					 */
-					
-					Customer just_made = new Customer(); //DELETE LATER, MODIFY to fit whatever is typed in
+					String inputName = name_field.getText();
+					int inputDay =Integer.parseInt(day_field.getText());
+					int inputMonth = Integer.parseInt(month_field.getText());
+					int inputYear = Integer.parseInt(year_field.getText());
+					int inputAge = Integer.parseInt(age_field.getText());
+					String currency = currency_field.getText();
+					Customer just_made = new Customer(inputName, inputDay, inputMonth, inputYear,inputAge,currency); //DELETE LATER, MODIFY to fit whatever is typed in
+					Bank.Customers.add(just_made);
 					CustomerHomepageUI registerpage = new CustomerHomepageUI(just_made);
 					dispose();
 				}
@@ -125,8 +155,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );  
-			
-			
+					
 			Create_Checkings.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -268,11 +297,19 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			JButton TakeLoan = new JButton("Take Loan");
 			JTextField repay_field_1 = new JTextField(8);
 			JButton Repay = new JButton("Repay Loan");
+			JButton addCollateral = new JButton("Add Collateral");
 			
 			JPanel panel = new JPanel();
 			add(panel);
+			String condition = "";
+			if(current.collateral == true) {
+				condition = " and you have a collateral";
+			}
+			else {
+				condition = " and you don't have a collateral";
+			}
 			
-			JLabel intro = new JLabel("Your current Loans is ");
+			JLabel intro = new JLabel("Your current Loans is " +  current.customer_loan.value + condition );
 			JLabel can_loan = new JLabel("");
 			panel.add(intro);
 			
@@ -280,9 +317,50 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			panel.add(TakeLoan);
 			panel.add(repay_field_1);
 			panel.add(Repay);
+			panel.add(addCollateral);
+			
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );
+			
+			addCollateral.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					if(current.collateral == false) {
+						current.collateral = true;
+						intro.setText("Your current Loans is " +  current.customer_loan.value + " and you have a collateral now");
+					}	
+				}	
+			});
+			
+			TakeLoan.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					if(current.collateral == false) {
+						intro.setText("No collateral, unable to process");
+					}
+					else {
+						float toTake = Float.parseFloat(take_field_1.getText());
+						current.customer_loan.value += toTake;
+						intro.setText("Your current Loans is " +  current.customer_loan.value + " and you have a collateral" );
+					}
+				}	
+			});
+			
+			Repay.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					if(current.collateral == false) {
+						intro.setText("No collateral, unable to process");
+					}
+					else {
+						float toRepay = Float.parseFloat(repay_field_1.getText());
+						current.customer_loan.value -= toRepay;
+						intro.setText("Your current Loans is " +  current.customer_loan.value + " and you have a collateral" );
+					}
+				}	
+			});
+			
 		}
 	}
 	

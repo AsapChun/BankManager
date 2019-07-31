@@ -5,6 +5,11 @@ public class Loans {
   float interest;
   int lengthOfLoan;
   
+  public Loans() {
+	  value = 0;
+	  interest = 0;
+	  lengthOfLoan = 0;
+  }
   public Loans(int total, float Rate, int length) {
     value = total;
     interest = Rate;

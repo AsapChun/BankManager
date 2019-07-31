@@ -11,8 +11,8 @@ public class Customer {
 	CheckingAccount customer_checking ;
 	String Password = "";
 	SavingAccount customer_saving ; //will not be initialized  in constructor, only in button
-	Loans customer_loan;
-	boolean collateral;
+	Loans customer_loan = new Loans();
+	boolean collateral = false;
 	String Currency; //NEED TO CHANGE
 	
 	public Customer() {
