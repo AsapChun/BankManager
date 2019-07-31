@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class Bank {
   public static ArrayList<Loans> existingLoans = new ArrayList();
   public static ArrayList<Customer> Customers = new ArrayList();
-  Balance earnings;
+  public static Balance earnings = new Balance();
+  
   
   /*
    * Removed  Account since that should be in Customers class
@@ -18,12 +19,11 @@ public class Bank {
    * makesure when Customer is created no duplicate  exist
    */
   
-  Report report;
+  Report report = new Report();
   
   
   public Bank() {
-    report = new Report();
-    earnings = new Balance();
+    
   }
   
   public static boolean findCustomer(String name, String password) {
@@ -49,7 +49,7 @@ public class Bank {
     report.resetReport();
     report.dailyReport.append("Full Daily Report: "+ "\n");
     float BankBalance = earnings.checkBalance();
-    report.dailyReport.append("Total Bank's earnings: " + BankBalance + "\n");
+    report.dailyReport.append("Total Bank's earnings: $" + BankBalance + "\n");
     Iterator iter = Customers.iterator();
     report.dailyReport.append("----------------------------------------"+ "\n");
     Boolean checkCustomer = true;

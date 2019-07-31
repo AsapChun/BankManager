@@ -105,7 +105,7 @@ public class Manager extends JFrame{
 	  public CustomerSummaryUI(Customer c) {
 	    JPanel panel = new JPanel();
         add(panel);
-        setSize( 800, 800 );
+        setSize( 600, 300 );
         setLocation( 200, 100 );
         setVisible( true );
         String report = c.CustomerSummary();
@@ -121,7 +121,7 @@ public class Manager extends JFrame{
 		public reportUI(Bank bank) {
 			JPanel panel = new JPanel();
 			add(panel);
-			setSize( 800, 800 );
+			setSize( 600, 600 );
 			setLocation( 200, 100 );
 			setVisible( true );
 			String report = bank.getReport();
@@ -139,7 +139,7 @@ public class Manager extends JFrame{
 		public loanCheckerUI(Bank bank) {
 			JPanel panel = new JPanel();
 			add(panel);
-			setSize( 800, 800 );
+			setSize( 600, 300 );
 			setLocation( 200, 100 );
 			setVisible( true );
 			String report = bank.createLoanReport();
@@ -156,7 +156,7 @@ public class Manager extends JFrame{
 		public customerInfo(Customer individual) {
 			JPanel panel = new JPanel();
 			add(panel);
-			setSize( 800, 800 );
+			setSize( 600, 300);
 			setLocation( 200, 100 );
 			setVisible( true );
 		}

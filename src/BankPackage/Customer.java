@@ -64,6 +64,7 @@ public class Customer {
 	public void create_checking(float initial) {
 		this.customer_checking = new CheckingAccount(user_info);
 		this.customer_checking.deposit(initial - 5);
+		Bank.earnings.add(5);
 	}
 	
 	public void add_checking(float amount) {
@@ -73,6 +74,7 @@ public class Customer {
 	public void create_saving(float initial) {
 		this.customer_saving = new SavingAccount(user_info);
 		this.customer_saving.deposit(initial - 5);
+		Bank.earnings.add(5);
 	}
 	
 	public void add_saving(float amount) {
