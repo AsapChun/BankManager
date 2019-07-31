@@ -79,6 +79,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 					int inputAge = Integer.parseInt(age_field.getText());
 					String currency = currency_field.getText();
 					Customer just_made = new Customer(inputName, inputDay, inputMonth, inputYear,inputAge,currency); //DELETE LATER, MODIFY to fit whatever is typed in
+					just_made.Password = password_field_1.getText();
 					Bank.Customers.add(just_made);
 					CustomerHomepageUI registerpage = new CustomerHomepageUI(just_made);
 					dispose();
@@ -131,7 +132,12 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 					CustomerHomepageUI home_page = new CustomerHomepageUI(retrieving);
 					System.out.println("Found him");
 				}
+				
+				for(int i = 0; i < Bank.Customers.size(); i++) {
+					System.out.println(Bank.Customers.get(i).getName());
+				}
 				System.out.println(input_name); //DELETE LATER
+				System.out.println(Bank.findCustomer(input_name,password));
 				System.out.println(password);
 //				dispose();
 				//else do nothing
@@ -453,6 +459,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 		    	 * Check loan amount/Make loans
 		    	 */
 		    	LoginPageUI loginpage = new LoginPageUI();
+		    	dispose();
 		    }
 		});
 
@@ -465,6 +472,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 				 * Do everything above except we need to register the data
 				 */
 				RegisterPageUI registerpage = new RegisterPageUI();
+				dispose();
 			}
 
 		});
