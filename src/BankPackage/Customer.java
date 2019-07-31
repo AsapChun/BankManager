@@ -14,7 +14,7 @@ public class Customer {
 	Loans customer_loan = new Loans();
 	boolean collateral = false;
 	String Currency; //NEED TO CHANGE
-	Bank bank;
+	
 	
 	public Customer() {
 		//Delete later, TESTING THIS MUST NOT EXIST
@@ -25,9 +25,7 @@ public class Customer {
 		//we should ask for collateral info?
 		Currency =  curr;
 	}
-	public void initBank(Bank b) {
-	  bank = b;
-	}
+	
 	public String CustomerSummary(){
 	  StringBuilder report = new StringBuilder();
 	  report.append("Customer Summary! " + "\n");
@@ -58,9 +56,7 @@ public class Customer {
 	  return report.toString();
 	  
 	}
-	public void bank_profit(Bank b) {
-	  b.earnings.add(5);
-	}
+	
 	public void create_loan(int total, float Rate, int length) {
 	  customer_loan = new Loans(total, Rate, length);
 	}
