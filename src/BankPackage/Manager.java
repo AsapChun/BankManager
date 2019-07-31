@@ -1,6 +1,8 @@
 package BankPackage;
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class Manager extends JFrame{
 	
@@ -53,7 +57,7 @@ public class Manager extends JFrame{
 		{
 		    public void actionPerformed(ActionEvent e) {
 		        //TODO: Create Loan Jframe
-		    	loanCheckerUI loancheck = new  loanCheckerUI();
+		    	loanCheckerUI loancheck = new  loanCheckerUI(bank);
 		    }
 		});
 		
@@ -82,7 +86,8 @@ public class Manager extends JFrame{
 				toMod.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//Show info
-						customerInfo current = new customerInfo(Bank.Customers.get(currently));
+					    CustomerSummaryUI summary = new CustomerSummaryUI(Bank.Customers.get(currently));
+						
 					}
 				});
 			}
@@ -96,6 +101,20 @@ public class Manager extends JFrame{
 	/*
 	 * TODO: Add some stuff
 	 */
+	public class CustomerSummaryUI extends JFrame{
+	  public CustomerSummaryUI(Customer c) {
+	    JPanel panel = new JPanel();
+        add(panel);
+        setSize( 800, 800 );
+        setLocation( 200, 100 );
+        setVisible( true );
+        String report = c.CustomerSummary();
+        JTextArea area = new JTextArea(5, 20);
+        area.setEditable(false);
+        area.append(report);
+        panel.add(area);
+	  }
+	}
 	
 	
 	public class reportUI extends JFrame{
@@ -106,18 +125,29 @@ public class Manager extends JFrame{
 			setLocation( 200, 100 );
 			setVisible( true );
 			String report = bank.getReport();
-			JLabel lab = new JLabel(report);
-            panel.add(lab);
+			JTextArea area = new JTextArea(5, 20);
+			area.setEditable(false);
+			area.append(report);
+			JScrollPane scrollPane = new JScrollPane(area);
+			panel.add(area);
+			
+            
 		}
 	}
 	
 	public class loanCheckerUI extends JFrame{
-		public loanCheckerUI() {
+		public loanCheckerUI(Bank bank) {
 			JPanel panel = new JPanel();
 			add(panel);
 			setSize( 800, 800 );
 			setLocation( 200, 100 );
 			setVisible( true );
+			String report = bank.createLoanReport();
+            JTextArea area = new JTextArea(5, 20);
+            area.setEditable(false);
+            area.append(report);
+            JScrollPane scrollPane = new JScrollPane(area);
+            panel.add(area);
 		}
 	}
 	

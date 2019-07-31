@@ -8,6 +8,7 @@ public class Bank {
   public static ArrayList<Loans> existingLoans = new ArrayList();
   public static ArrayList<Customer> Customers = new ArrayList();
   Balance earnings;
+  
   /*
    * Removed  Account since that should be in Customers class
    * We can  access them through Customer, in that way we also provide information about the id
@@ -45,24 +46,39 @@ public class Bank {
   public String CreateReport() {
     //Bank Balance
     report.resetReport();
+    report.dailyReport.append("Full Daily Report: "+ "\n");
     float BankBalance = earnings.checkBalance();
     report.dailyReport.append("Total Bank's earnings: " + BankBalance + "\n");
     Iterator iter = Customers.iterator();
-    report.dailyReport.append("----------------------------------------");
+    report.dailyReport.append("----------------------------------------"+ "\n");
     Boolean checkCustomer = true;
     //Customer Report
     report.dailyReport.append("Bank's Customers Report: " + "\n");
+    report.dailyReport.append("----------------------------------------------------------" + "\n");
     while(iter.hasNext()) {
       checkCustomer = false;
       Customer c = (Customer) iter.next();
       String name = c.getName();
-      float checkingBalance = c.customer_checking.getBalance();
-      float savingBalance = c.customer_saving.getBalance();
       String currency = c.Currency;
-      report.dailyReport.append("*" + name +"'s Account Details: *" + "/n");
-      report.dailyReport.append("       Checking Account Balance - " + currency + checkingBalance  + "Saving Account Balance - "+ currency + savingBalance);
-      report.dailyReport.append("       Current Loan - " + c.customer_loan.value + "; Length of Loan - "+ c.customer_loan.lengthOfLoan + "months; interest rate - "+ c.customer_loan.interest);
-      report.dailyReport.append("----------------------------------------");
+      report.dailyReport.append("*" + name +"'s Account Details: *" + "\n");
+      if(c.customer_checking == null) {
+        report.dailyReport.append("       Checking Account Balance -  Does not exist! "+ "\n");
+      } else {
+        float checkingBalance = c.customer_checking.getBalance();
+        report.dailyReport.append("       Checking Account Balance - " + currency + checkingBalance + "\n");
+      }
+      if(c.customer_saving == null) {
+        report.dailyReport.append("       Saving Account Balance - Does not exist!"+ "\n");
+      } else {
+        float savingBalance = c.customer_saving.getBalance();
+        report.dailyReport.append("        Saving Account Balance - "+ currency + savingBalance+ "\n");
+      }
+      if(c.customer_loan == null) {
+        report.dailyReport.append("       Current Loan - Does not exist!" + "\n");
+      } else {
+        report.dailyReport.append("       Current Loan - " + c.customer_loan.value + "; Length of Loan - "+ c.customer_loan.lengthOfLoan + " months; interest rate - "+ c.customer_loan.interest+ "\n");
+      }
+      report.dailyReport.append("----------------------------------------"+ "\n");
     }
     if(checkCustomer) {
       report.dailyReport.append("No Customer Accounts on file!");
@@ -74,6 +90,31 @@ public class Bank {
     return report;
   }
   
+  public String createLoanReport() {
+    StringBuilder LoanReport = new StringBuilder();
+    LoanReport.append("LOAN REPORT: (Current Loans on File!) "+ "\n");
+    LoanReport.append("----------------------------------------------------------" + "\n");
+    Iterator iter = Customers.iterator();
+    Boolean check = true;
+    while(iter.hasNext()) {
+      check = false;
+      Customer c = (Customer) iter.next();
+      String name = c.getName();
+      Loans loan = c.customer_loan;
+      float interest = loan.interest;
+      int length = loan.lengthOfLoan;
+      int value = loan.value;
+      LoanReport.append("Customer Name : "+ name + "; Loan Value: " + value + "\n");
+      LoanReport.append("       Loan Interest Rate: " + interest + "; Loan Length: "+ length + " months" + "\n");
+      LoanReport.append("----------------------------------------------------------" + "\n");
+      LoanReport.append( "\n");
+    }
+    if(check) {
+      LoanReport.append("No Loans on File!");
+    }
+    
+    return LoanReport.toString();
+  }
   //print exisitng stuff TODO
   public void checkLoans() {
     Iterator iter = existingLoans.iterator();

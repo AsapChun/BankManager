@@ -7,7 +7,7 @@ public class Report {
     //me an update from the last time I ran the repo
   StringBuilder dailyReport = new StringBuilder();
   public Report() {
-    dailyReport.append("Full Daily Report: "+ "\n");
+    
   }
   
   public void resetReport() {
