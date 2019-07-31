@@ -1,6 +1,7 @@
 package BankPackage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Customer {
 	//Private customer attribute
@@ -49,17 +50,29 @@ public class Customer {
 	    report.append(name + "'s Saving Account: " + "\n");
         report.append("          - Balance: "+ customer_saving.getBalance() + "\n");
 	  }
-      report.append(name + "'s Loans: " + "\n");
-      report.append("          - Amount: "+ customer_loan.value +"; Interest Rate: " + customer_loan.interest+ "; Length of Loan:  " + customer_loan.lengthOfLoan + "\n");
-      report.append("          - Total Repayment - " + Currency + customer_loan.totalRepayment()+ "\n");
+	  Iterator iter = customer_loan.iterator();
+	  Boolean check = true;
+	  report.append(name + "'s Loans: " + "\n");
+	  int count = 1;
+	  while(iter.hasNext()) {
+	    report.append("Loan "+count + "\n");
+	    Loans x = (Loans) iter.next();
+	    report.append("          - Amount: "+ x.value +"; Interest Rate: " + x.interest+ "; Length of Loan:  " + x.lengthOfLoan + "\n");
+	    report.append("          - Total Repayment - " + Currency + x.totalRepayment()+ "\n");
+	    count ++;
+	  }
+	  if(check) {
+	    report.append("          - No Loans on File!"+ "\n");
+	  }
+      
       report.append("----------------End of Customer Report------------------"+ "\n");
 	  
 	  return report.toString();
 	  
 	}
-	
+/* CHECK!!! COMMENTED OUT THIS FUNCTION! */
 	public void create_loan(int total, float Rate, int length) {
-	  customer_loan = new Loans(total, Rate, length);
+//	  customer_loan = new Loans(total, Rate, length);
 	}
 	
 	public void create_checking(float initial) {

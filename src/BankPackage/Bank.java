@@ -74,12 +74,21 @@ public class Bank {
         float savingBalance = c.customer_saving.getBalance();
         report.dailyReport.append("        Saving Account Balance - "+ currency + savingBalance+ "\n");
       }
-      if(c.customer_loan == null) {
-        report.dailyReport.append("       Current Loan - Does not exist!" + "\n");
-      } else {
-        report.dailyReport.append("       Current Loan - " + currency + c.customer_loan.value + "; Length of Loan - "+ c.customer_loan.lengthOfLoan + " months; interest rate - "+ c.customer_loan.interest+ "\n");
-        report.dailyReport.append("       Total Repayment - " + currency+ c.customer_loan.totalRepayment()+ "\n");
+      Iterator loanIter = c.customer_loan.iterator();
+      Boolean checker = true;
+      int num =1;
+      while(loanIter.hasNext()) {
+        checker = false;
+        Loans x = (Loans) loanIter.next();
+        report.dailyReport.append("Loan "+ num +":" + "\n");
+        report.dailyReport.append("       Current Loan - " + currency + x.value + "; Length of Loan - "+ x.lengthOfLoan + " months; interest rate - "+ x.interest+ "\n");
+        report.dailyReport.append("       Total Repayment - " + currency+ x.totalRepayment()+ "\n");
+        num ++;
       }
+      if(checker) {
+        report.dailyReport.append("       No Loans on File!" + "\n");
+      }
+      
       report.dailyReport.append("----------------------------------------"+ "\n");
     }
     if(checkCustomer) {
@@ -102,17 +111,28 @@ public class Bank {
       check = false;
       Customer c = (Customer) iter.next();
       String name = c.getName();
-      Loans loan = c.customer_loan;
-      float interest = loan.interest;
-      int length = loan.lengthOfLoan;
-      int value = loan.value;
       LoanReport.append("Customer Name : "+ name + "\n");
-      LoanReport.append("      Loan Value: " + value + ";Loan Interest Rate: " + interest + "; Loan Length: "+ length + " months" + "\n");
-      LoanReport.append("       Total Repayment - " + c.Currency + c.customer_loan.totalRepayment()+ "\n");
-      LoanReport.append("----------------------------------------------------------" + "\n");
+      Iterator it = c.customer_loan.iterator();
+      int num = 1;
+      Boolean checker = true;
+      while(it.hasNext()) {
+        checker = false;
+        Loans loan= (Loans) it.next();
+        float interest = loan.interest;
+        int length = loan.lengthOfLoan;
+        int value = loan.value;
+        LoanReport.append("Loan #" + num +":" + "\n");
+        LoanReport.append("      Loan Value: " + value + ";Loan Interest Rate: " + interest + "; Loan Length: "+ length + " months" + "\n");
+        LoanReport.append("       Total Repayment - " + c.Currency + loan.totalRepayment()+ "\n");
+        LoanReport.append("----------------------------------------------------------" + "\n");
+        num++;
+      }
+      if(checker) {
+        LoanReport.append("NO LOANS ON FILE" + "\n");
+      }
     }
     if(check) {
-      LoanReport.append("No Loans on File!");
+      LoanReport.append("No Customers on File!");
     }
     
     return LoanReport.toString();
