@@ -105,8 +105,8 @@ public class Bank {
       float interest = loan.interest;
       int length = loan.lengthOfLoan;
       int value = loan.value;
-      LoanReport.append("Customer Name : "+ name + "; Loan Value: " + value + "\n");
-      LoanReport.append("       Loan Interest Rate: " + interest + "; Loan Length: "+ length + " months" + "\n");
+      LoanReport.append("Customer Name : "+ name + "\n");
+      LoanReport.append("      Loan Value: " + value + ";Loan Interest Rate: " + interest + "; Loan Length: "+ length + " months" + "\n");
       LoanReport.append("----------------------------------------------------------" + "\n");
       LoanReport.append( "\n");
     }

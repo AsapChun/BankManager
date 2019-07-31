@@ -65,7 +65,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 	
 			
 			panel.add(btn_register);
-			setSize( 800, 800 );
+			setSize( 800, 400  );
 			setLocation( 200, 100 );
 			setVisible( true );
 			
@@ -158,7 +158,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			panel.add(l1);
 			panel.add(initial_balance);
 			panel.add(Create_Checkings);
-			setSize( 800, 800 );
+			setSize( 800, 400 );
 			setLocation( 200, 100 );
 			setVisible( true );  
 					
@@ -188,7 +188,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 				panel.add(l1);
 				panel.add(initial_balance);
 				panel.add(Create_Savings);
-				setSize( 800, 800 );
+				setSize( 800, 400 );
 				setLocation( 200, 100 );
 				setVisible( true );  
 				
@@ -227,7 +227,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			panel.add(Deposit);
 			panel.add(withdraw_field_1);
 			panel.add(Withdraw);
-			setSize( 800, 800 );
+			setSize( 800, 400 );
 			setLocation( 200, 100 );
 			setVisible( true );
 			
@@ -271,7 +271,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			panel.add(Deposit);
 			panel.add(withdraw_field_1);
 			panel.add(Withdraw);
-			setSize( 800, 800 );
+			setSize( 800, 400 );
 			setLocation( 200, 100 );
 			setVisible( true );
 			
@@ -325,7 +325,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			panel.add(Repay);
 			panel.add(addCollateral);
 			
-			setSize( 800, 800 );
+			setSize( 800, 400 );
 			setLocation( 200, 100 );
 			setVisible( true );
 			
@@ -389,7 +389,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 			panel.add(savings);
 			panel.add(loans);
 			panel.add(new JLabel("Welcome " + current_customer.getName()));
-			setSize( 800, 800 );
+			setSize( 800, 400 );
 			setLocation( 200, 100 );
 			setVisible( true );
 			
@@ -444,7 +444,7 @@ public class CustomerUI extends JFrame { //Every customer has a checking and sav
 		
 		panel.add(btn_login);
 		panel.add(btn_create_user);
-		setSize( 800, 800 );
+		setSize( 800, 400 );
 		setLocation( 200, 100 );
 		setVisible( true );
 		  

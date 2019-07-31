@@ -52,7 +52,7 @@ public class BankRunner extends JFrame{
 	    JFrame frame = new BankRunner(bank);	
 		// Initialize frame information
 		frame.setTitle( "Main Menu" );
-		frame.setSize( 800, 800 );
+		frame.setSize( 500, 500 );
 		frame.setLocation( 200, 100 );
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
 		// Turn it on
