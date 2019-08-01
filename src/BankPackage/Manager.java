@@ -28,7 +28,7 @@ public class Manager extends JFrame{
 		panel.add(btn_loan_check);
 		
 		setSize( 800, 800 );
-		setLocation( 200, 100 );
+		setLocationRelativeTo(null);
 		setVisible( true );
 		
 		btn_customer_list.addActionListener(new ActionListener() 
@@ -92,7 +92,7 @@ public class Manager extends JFrame{
 				});
 			}
 			setSize( 800, 800 );
-			setLocation( 200, 100 );
+			setLocationRelativeTo(null);
 			setVisible( true );
 			
 		}
@@ -106,7 +106,7 @@ public class Manager extends JFrame{
 	    JPanel panel = new JPanel();
         add(panel);
         setSize( 600, 300 );
-        setLocation( 200, 100 );
+        setLocationRelativeTo(null);
         setVisible( true );
         String report = c.CustomerSummary();
         JTextArea area = new JTextArea(5, 20);
@@ -122,7 +122,7 @@ public class Manager extends JFrame{
 			JPanel panel = new JPanel();
 			add(panel);
 			setSize( 600, 600 );
-			setLocation( 200, 100 );
+			setLocationRelativeTo(null);
 			setVisible( true );
 			String report = bank.getReport();
 			JTextArea area = new JTextArea(5, 20);
@@ -140,7 +140,7 @@ public class Manager extends JFrame{
 			JPanel panel = new JPanel();
 			add(panel);
 			setSize( 600, 300 );
-			setLocation( 200, 100 );
+			setLocationRelativeTo(null);
 			setVisible( true );
 			String report = bank.createLoanReport();
             JTextArea area = new JTextArea(5, 20);
@@ -157,7 +157,7 @@ public class Manager extends JFrame{
 			JPanel panel = new JPanel();
 			add(panel);
 			setSize( 600, 300);
-			setLocation( 200, 100 );
+			setLocationRelativeTo(null);
 			setVisible( true );
 		}
 	}
