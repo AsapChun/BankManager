@@ -4,26 +4,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Customer {
-	//Private customer attribute
-	/* TO DO:
-	 * Add Passwords to the class 
-	 */
-	Data user_info; //this will contain name, date of birth (not sure needed)
-	CheckingAccount customer_checking ;
-	String Password = "";
-	SavingAccount customer_saving ; //will not be initialized  in constructor, only in button
-	ArrayList<Loans> customer_loan = new ArrayList<Loans>();
+	public Data user_info;
+	public CheckingAccount customer_checking ;
+	public String Password = "";
+	public SavingAccount customer_saving;
+	public ArrayList<Loans> customer_loan = new ArrayList<Loans>();
 	boolean collateral = false;
-	String Currency; //NEED TO CHANGE
+	public String Currency; 
 	
-	
-	public Customer() {
-		//Delete later, TESTING THIS MUST NOT EXIST
-	}
 	
 	public Customer(String name, int day, int month, int year, int age, String curr) {
 		this.user_info = new Data(name, day, month, year, age);
-		//we should ask for collateral info?
 		Currency =  curr;
 	}
 	
@@ -70,9 +61,15 @@ public class Customer {
 	  return report.toString();
 	  
 	}
-/* CHECK!!! COMMENTED OUT THIS FUNCTION! */
+
+
 	public void create_loan(int total, float Rate, int length) {
-//	  customer_loan = new Loans(total, Rate, length);
+	  Loans new_loan = new Loans(total, Rate, length);
+	  this.customer_loan.add(new_loan); //add to array list of loans
+	}
+	
+	public void addLoan(Loans a) {
+		this.customer_loan.add(a);
 	}
 	
 	public void create_checking(float initial) {
@@ -95,16 +92,6 @@ public class Customer {
       this.customer_saving.deposit(amount);
     }
 	
-	public void takeLoans() {
-		//ask user whether they want to take from checking or saving
-		
-		//First checks for collateral
-		
-		//if checking TO DO:
-		
-		//if savings TO DO:
-		
-	}
 	
 	public String getName() {
 	  return this.user_info.customer_name;
