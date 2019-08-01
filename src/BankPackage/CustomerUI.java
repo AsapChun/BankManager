@@ -1,6 +1,7 @@
 package BankPackage;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -153,9 +154,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 					for (int i = 0; i < Bank.Customers.size(); i++) {
 						System.out.println(Bank.Customers.get(i).getName());
 					}
-					System.out.println(input_name); // DELETE LATER
-					System.out.println(Bank.findCustomer(input_name, password));
-					System.out.println(password);
+					dispose();
 //				dispose();
 					// else do nothing
 				}
@@ -340,10 +339,10 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 
 			panel.add(interest_info);
 			panel.add(interest_info);
-			panel.add(borrow);
 			panel.add(option1);
 			panel.add(option2);
 			panel.add(option3);
+			panel.add(amount);
 			panel.add(borrow);
 
 			setSize(1200, 600);
@@ -416,6 +415,8 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			setLayout(new BorderLayout());
 			JButton makeLoan = new JButton("Request a Loan");
 			JButton addCollateral = new JButton("Add Collateral");
+			JLabel warning = new JLabel("");
+			warning.setForeground(Color.red);
 			String condition = "not available";
 			if(current.isCollateral() == true) {
 				condition = "available";
@@ -423,7 +424,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			JLabel collateral = new JLabel("Your collateral is " + condition);
 			JPanel panel = new JPanel();
 			JPanel panel2 = new JPanel();
-			add(panel, BorderLayout.NORTH);
+			JPanel panel3 = new JPanel();
 
 			
 			for (int i = 0; i < current.getCustomer_loan().size(); i++) {
@@ -443,18 +444,26 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 
 			makeLoan.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Loans modify = new Loans(); // placeholder
-					createLoansUI make = new createLoansUI(current, modify);
+					if(current.isCollateral() == true) {
+						Loans modify = new Loans(); // placeholder
+						createLoansUI make = new createLoansUI(current, modify);
+					}
+					else {
+						warning.setText("Please add Collateral First");
+					}
+					
 				}
 			});
 			
-			add(panel2, BorderLayout.CENTER);
+			add(panel2, BorderLayout.NORTH);
 			panel2.add(addCollateral);
 			panel2.add(makeLoan);
 			panel2.add(collateral);
-			
+			panel3.add(warning);
+			add(panel, BorderLayout.CENTER);
+			add(panel3,BorderLayout.SOUTH);
 
-			setSize(800, 400);
+			setSize(800, 800);
 			setLocationRelativeTo(null);
 			setVisible(true);
 			
