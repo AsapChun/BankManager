@@ -389,8 +389,6 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			setSize(1200, 600);
 			setLocation(200, 100);
 			setVisible(true);
-
-
 		}
 	}
 
@@ -398,7 +396,11 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 		public LoansListUI(Customer current) {
 			JButton makeLoan = new JButton("Request a Loan");
 			JButton addCollateral = new JButton("Add Collateral");
-			
+			String condition = "not available";
+			if(current.collateral == true) {
+				condition = "available";
+			}
+			JLabel collateral = new JLabel("our collateral is " + condition);
 			JPanel panel = new JPanel();
 			add(panel);
 
@@ -420,6 +422,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			panel.add(addCollateral);
 
 			panel.add(makeLoan);
+			panel.add(collateral);
 
 			makeLoan.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
