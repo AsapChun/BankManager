@@ -1,6 +1,8 @@
 package BankPackage;
 
 import javax.swing.*;
+
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 
@@ -17,12 +19,20 @@ public class BankRunner extends JFrame{
 	public BankRunner(Bank bank) { //Create an instance of the Interface
 		JButton jbtManager = new JButton( "Manager" );
 		JButton jbtCustomer = new JButton( "Customer" );
-		
+		jbtManager.setSize(new Dimension(400,400));
 		JPanel panel = new JPanel();
+		
+		
+		
+		panel.setSize(new Dimension(400,400));
+		panel.setLayout(new FlowLayout());
 		add(panel);
 		
-		panel.setLayout( new FlowLayout(FlowLayout.CENTER) );
-		panel.add( new JLabel( "Welcome to the Bank! Options:" ) );
+		panel.setLayout( new FlowLayout(FlowLayout.CENTER,30,20));
+		JLabel intro = new JLabel( "Welcome to the Bank! Options:" );
+		
+		
+		panel.add( intro );
 		panel.add( jbtManager );
 		panel.add( jbtCustomer );
 		  
@@ -52,8 +62,8 @@ public class BankRunner extends JFrame{
 	    JFrame frame = new BankRunner(bank);	
 		// Initialize frame information
 		frame.setTitle( "Main Menu" );
-		frame.setSize( 500, 500 );
-		frame.setLocation( 200, 100 );
+		frame.setSize( 1200, 1200 );
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
 		// Turn it on
 		frame.setVisible( true );

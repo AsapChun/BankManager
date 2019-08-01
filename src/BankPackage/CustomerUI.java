@@ -1,5 +1,7 @@
 package BankPackage;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,6 +19,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 import BankPackage.Manager.CustomerSummaryUI;
 
@@ -34,6 +37,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			/*
 			 * Make another JFrame
 			 */
+			
 			JButton btn_register = new JButton("Register");
 			JLabel name = new JLabel("Name");
 			JLabel date = new JLabel("Date of Birth (Month/Day/Year)");
@@ -51,6 +55,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			JPasswordField password_field_1 = new JPasswordField(8);
 
 			JPanel panel = new JPanel();
+			SpringLayout design = new SpringLayout();
 			add(panel);
 
 			panel.add(name);
@@ -117,6 +122,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			password_field_1.setBounds(300, 110, 200, 30);
 			JPanel panel = new JPanel();
 			add(panel);
+			panel.setLayout(new FlowLayout());
 			panel.add(user_field);
 			panel.add(text_field_1);
 			panel.add(password_field);
