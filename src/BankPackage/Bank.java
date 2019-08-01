@@ -28,7 +28,7 @@ public class Bank {
   
   public static boolean findCustomer(String name, String password) {
 	  for(int i = 0 ; i < Customers.size() ; i++) {
-		  if(Customers.get(i).getName().equals(name) & Customers.get(i).Password.equals(password)) {
+		  if(Customers.get(i).getName().equals(name) & Customers.get(i).getPassword().equals(password)) {
 			  
 			  return true;
 		  }
@@ -38,7 +38,7 @@ public class Bank {
   
   public static Customer retrieveCustomer(String name, String password) {
 	  for(int i =0; i < Customers.size() ; i++) {
-		  if(Customers.get(i).getName().equals(name) & Customers.get(i).Password.equals(password)) {
+		  if(Customers.get(i).getName().equals(name) & Customers.get(i).getPassword().equals(password)) {
 			  return Customers.get(i);
 		  }
 	  }
@@ -60,28 +60,28 @@ public class Bank {
       checkCustomer = false;
       Customer c = (Customer) iter.next();
       String name = c.getName();
-      String currency = c.Currency;
+      String currency = c.getCurrency();
       report.dailyReport.append("*" + name +"'s Account Details: *" + "\n");
-      if(c.customer_checking == null) {
+      if(c.getCustomer_checking() == null) {
         report.dailyReport.append("       Checking Account Balance -  Does not exist! "+ "\n");
       } else {
-        float checkingBalance = c.customer_checking.getBalance();
+        float checkingBalance = c.getCustomer_checking().getBalance();
         report.dailyReport.append("       Checking Account Balance - " + currency + checkingBalance + "\n");
       }
-      if(c.customer_saving == null) {
+      if(c.getCustomer_saving() == null) {
         report.dailyReport.append("       Saving Account Balance - Does not exist!"+ "\n");
       } else {
-        float savingBalance = c.customer_saving.getBalance();
+        float savingBalance = c.getCustomer_saving().getBalance();
         report.dailyReport.append("        Saving Account Balance - "+ currency + savingBalance+ "\n");
       }
-      Iterator loanIter = c.customer_loan.iterator();
+      Iterator loanIter = c.getCustomer_loan().iterator();
       Boolean checker = true;
       int num =1;
       while(loanIter.hasNext()) {
         checker = false;
         Loans x = (Loans) loanIter.next();
         report.dailyReport.append("Loan "+ num +":" + "\n");
-        report.dailyReport.append("       Current Loan - " + currency + x.value + "; Length of Loan - "+ x.lengthOfLoan + " months; interest rate - "+ x.interest+ "\n");
+        report.dailyReport.append("       Current Loan - " + currency + x.getValue() + "; Length of Loan - "+ x.getLengthOfLoan() + " months; interest rate - "+ x.getInterest()+ "\n");
         report.dailyReport.append("       Total Repayment - " + currency+ x.totalRepayment()+ "\n");
         num ++;
       }
@@ -112,18 +112,18 @@ public class Bank {
       Customer c = (Customer) iter.next();
       String name = c.getName();
       LoanReport.append("Customer Name : "+ name + "\n");
-      Iterator it = c.customer_loan.iterator();
+      Iterator it = c.getCustomer_loan().iterator();
       int num = 1;
       Boolean checker = true;
       while(it.hasNext()) {
         checker = false;
         Loans loan= (Loans) it.next();
-        float interest = loan.interest;
-        int length = loan.lengthOfLoan;
-        int value = loan.value;
+        float interest = loan.getInterest();
+        int length = loan.getLengthOfLoan();
+        int value = loan.getValue();
         LoanReport.append("Loan #" + num +":" + "\n");
         LoanReport.append("      Loan Value: " + value + ";Loan Interest Rate: " + interest + "; Loan Length: "+ length + " months" + "\n");
-        LoanReport.append("       Total Repayment - " + c.Currency + loan.totalRepayment()+ "\n");
+        LoanReport.append("       Total Repayment - " + c.getCurrency() + loan.totalRepayment()+ "\n");
         LoanReport.append("----------------------------------------------------------" + "\n");
         num++;
       }
@@ -234,20 +234,20 @@ public class Bank {
           case 1: //Checking
             switch(select) {
               case 1:// deposit
-                c.customer_checking.deposit(amount);
+                c.getCustomer_checking().deposit(amount);
                 break;
               case 2: //withdraw
-                c.customer_checking.withdraw(amount);
+                c.getCustomer_checking().withdraw(amount);
                 break;
             }
             break;
           case 2: //Saving
             switch(choice) {
               case 1:
-                c.customer_saving.deposit(amount);
+                c.getCustomer_saving().deposit(amount);
                 break;
               case 2:
-                c.customer_saving.withdraw(amount);
+                c.getCustomer_saving().withdraw(amount);
                 break;
             }
             break;
@@ -300,10 +300,10 @@ public class Bank {
         Customer it = (Customer) iter.next();
         if(it.getName().equals(in)) {
           if(choice == 1) { //checking
-            it.customer_checking.checking_account_balance.subtract(amount);
+            it.getCustomer_checking().getChecking_account_balance().subtract(amount);
             System.out.println(amount + " has been withdrawn!");
           }else { //saving
-            it.customer_saving.savings_account_balance.subtract(amount);
+            it.getCustomer_saving().getSavings_account_balance().subtract(amount);
             System.out.println(amount + " has been withdrawn!");
           }
         }   
@@ -354,8 +354,8 @@ public class Bank {
       while(iter.hasNext()) {
         Customer c = (Customer) iter.next();
         String name = c.getName();
-        sb.append("Account Name: "+ name + "Age: "+ c.user_info.age + "\n");
-        sb.append("Checking Account Balance: "+ c.Currency + c.customer_checking.getBalance() + "; Saving Account Balance: " + c.Currency+ c.customer_saving.getBalance() + "\n");
+        sb.append("Account Name: "+ name + "Age: "+ c.getUser_info().age + "\n");
+        sb.append("Checking Account Balance: "+ c.getCurrency() + c.getCustomer_checking().getBalance() + "; Saving Account Balance: " + c.getCurrency()+ c.getCustomer_saving().getBalance() + "\n");
         sb.append("-----------------" + "\n"); 
       }
       System.out.println(sb);

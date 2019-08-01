@@ -1,9 +1,9 @@
 package BankPackage;
 
 public class Loans {
-  int value;
-  float interest;
-  int lengthOfLoan;
+  private int value;
+  private float interest;
+  private int lengthOfLoan;
   
   public Loans() {
 	  value = 0;
@@ -15,6 +15,7 @@ public class Loans {
     interest = Rate;
     lengthOfLoan = length;
   }
+  
   public int getValue() {
     return value;
   }
@@ -29,5 +30,17 @@ public class Loans {
     float x = value * i;
     return x;
   }
+public int getLengthOfLoan() {
+	return lengthOfLoan;
+}
+public void setLengthOfLoan(int lengthOfLoan) {
+	this.lengthOfLoan = lengthOfLoan;
+}
+public void setValue(int value) {
+	this.value = value;
+}
+public void setInterest(float interest) {
+	this.interest = interest;
+}
 
 }

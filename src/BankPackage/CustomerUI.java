@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
+import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -37,15 +38,16 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			/*
 			 * Make another JFrame
 			 */
-			
+			setLayout(new BorderLayout());
 			JButton btn_register = new JButton("Register");
 			JLabel name = new JLabel("Name");
 			JLabel date = new JLabel("Date of Birth (Month/Day/Year)");
 			JLabel age = new JLabel("Age");
 			JLabel spaces = new JLabel("                                      ");
-			JLabel currency = new JLabel("Currency");
+			JLabel currency = new JLabel("Choose Currency");
 			JLabel password = new JLabel("Password");
-
+			
+			
 			JTextField name_field = new JTextField(8);
 			JTextField currency_field = new JTextField(8);
 			JTextField day_field = new JTextField(2);
@@ -54,25 +56,31 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			JTextField age_field = new JTextField(2);
 			JPasswordField password_field_1 = new JPasswordField(8);
 
-			JPanel panel = new JPanel();
-			SpringLayout design = new SpringLayout();
-			add(panel);
-
-			panel.add(name);
-			panel.add(name_field);
-			panel.add(password);
-			panel.add(password_field_1);
-			panel.add(date);
-			panel.add(month_field);
-			panel.add(day_field);
-			panel.add(year_field);
-			panel.add(age);
-			panel.add(age_field);
-			panel.add(spaces);
-			panel.add(currency);
-			panel.add(currency_field);
-
-			panel.add(btn_register);
+			JPanel panel0 = new JPanel();
+			JPanel panel_name_password = new JPanel();
+			JPanel date_of_birth = new JPanel();
+			JPanel currency_chose = new JPanel();
+			add(panel0);
+			panel0.add(panel_name_password, BorderLayout.NORTH);
+			panel0.add(date_of_birth, BorderLayout.CENTER);
+			panel0.add(currency_chose);
+			
+			panel_name_password.add(name);
+			panel_name_password.add(name_field);
+			panel_name_password.add(password);
+			panel_name_password.add(password_field_1);
+			panel_name_password.add(age);
+			panel_name_password.add(age_field);
+			
+			
+			date_of_birth.add(date);
+			date_of_birth.add(month_field);
+			date_of_birth.add(day_field);
+			date_of_birth.add(year_field);
+			currency_chose.add(currency);
+			currency_chose.add(currency_field);
+			currency_chose.add(btn_register);
+			
 			setSize(800, 400);
 			setLocation(200, 100);
 			setVisible(true);
@@ -85,16 +93,8 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 					int inputYear = Integer.parseInt(year_field.getText());
 					int inputAge = Integer.parseInt(age_field.getText());
 					String currency = currency_field.getText();
-					Customer just_made = new Customer(inputName, inputDay, inputMonth, inputYear, inputAge, currency); // DELETE
-																														// LATER,
-																														// MODIFY
-																														// to
-																														// fit
-																														// whatever
-																														// is
-																														// typed
-																														// in
-					just_made.Password = password_field_1.getText();
+					Customer just_made = new Customer(inputName, inputDay, inputMonth, inputYear, inputAge, currency);
+					just_made.setPassword(password_field_1.getText());
 					Bank.Customers.add(just_made);
 					CustomerHomepageUI registerpage = new CustomerHomepageUI(just_made);
 					dispose();
@@ -181,7 +181,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 				public void actionPerformed(ActionEvent arg0) {
 					float amount = Float.parseFloat(initial_balance.getText());
 					info.create_checking(amount);
-					CheckingsUI checkings = new CheckingsUI(info.customer_checking);
+					CheckingsUI checkings = new CheckingsUI(info.getCustomer_checking());
 					dispose();
 				}
 
@@ -211,7 +211,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 				public void actionPerformed(ActionEvent arg0) {
 					float amount = Float.parseFloat(initial_balance.getText());
 					info.create_saving(amount);
-					SavingsUI checkings = new SavingsUI(info.customer_saving);
+					SavingsUI checkings = new SavingsUI(info.getCustomer_saving());
 					dispose();
 				}
 
@@ -338,9 +338,9 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					if (Integer.parseInt(borrow.getText()) != 0) {
-						modify.value = Integer.parseInt(borrow.getText());
-						modify.interest = (float) 0.03;
-						modify.lengthOfLoan = 1;
+						modify.setValue(Integer.parseInt(borrow.getText()));
+						modify.setInterest((float) 0.03);
+						modify.setLengthOfLoan(1);
 						current.addLoan(modify);
 						LoansListUI goBack = new LoansListUI(current);
 						dispose();
@@ -353,9 +353,9 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					if (Integer.parseInt(borrow.getText()) != 0) {
-						modify.value = Integer.parseInt(borrow.getText());
-						modify.interest = (float) 0.05;
-						modify.lengthOfLoan = 3;
+						modify.setValue(Integer.parseInt(borrow.getText()));
+						modify.setInterest((float) 0.05);
+						modify.setLengthOfLoan(3);
 						current.addLoan(modify);
 						LoansListUI goBack = new LoansListUI(current);
 						dispose();
@@ -367,14 +367,13 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					if (Integer.parseInt(borrow.getText()) != 0) {
-						modify.value = Integer.parseInt(borrow.getText());
-						modify.interest = (float) 0.08;
-						modify.lengthOfLoan = 6;
+						modify.setValue(Integer.parseInt(borrow.getText()));
+						modify.setInterest((float) 0.08);
+						modify.setLengthOfLoan(6);
 						current.addLoan(modify);
 						LoansListUI goBack = new LoansListUI(current);
 						dispose();
 					}
-
 				}
 			});
 
@@ -387,7 +386,7 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			JPanel panel = new JPanel();
 			add(panel);
 			panel.add(take_field_1);
-			String report = "Current Loan's Value: " + this_loan.value +  "\n Current Loan's Interest: " + this_loan.interest;
+			String report = "Current Loan's Value: " + this_loan.getValue() +  "\n Current Loan's Interest: " + this_loan.getInterest();
 			JTextArea area = new JTextArea(5, 20);
 	        area.setEditable(false);
 	        area.append(report);
@@ -403,14 +402,17 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			JButton makeLoan = new JButton("Request a Loan");
 			JButton addCollateral = new JButton("Add Collateral");
 			String condition = "not available";
-			if(current.collateral == true) {
+			if(current.isCollateral() == true) {
 				condition = "available";
 			}
 			JLabel collateral = new JLabel("our collateral is " + condition);
 			JPanel panel = new JPanel();
+			JPanel panel2 = new JPanel();
 			add(panel);
 
-			for (int i = 0; i < current.customer_loan.size(); i++) {
+			
+		
+			for (int i = 0; i < current.getCustomer_loan().size(); i++) {
 				panel.add(new JButton((i + 1) + " "));
 			}
 			for (int i = 0; i < panel.getComponentCount(); i++) {
@@ -419,16 +421,11 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 				toMod.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						// Show info
-						LoansUI summary = new LoansUI(current, current.customer_loan.get(currently));
+						LoansUI summary = new LoansUI(current, current.getCustomer_loan().get(currently));
 						dispose();
 					}
 				});
 			}
-			
-			panel.add(addCollateral);
-
-			panel.add(makeLoan);
-			panel.add(collateral);
 
 			makeLoan.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -436,6 +433,12 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 					createLoansUI make = new createLoansUI(current, modify);
 				}
 			});
+			
+			add(panel2);
+			panel2.add(addCollateral);
+			panel2.add(makeLoan);
+			panel2.add(collateral);
+			
 
 			setSize(800, 400);
 			setLocation(200, 100);
@@ -444,8 +447,8 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 			addCollateral.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					if (current.collateral == false) {
-						current.collateral = true;
+					if (current.isCollateral() == false) {
+						current.setCollateral(true);
 					}
 				}
 			});
@@ -477,12 +480,12 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 
 			checking.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println(current_customer.customer_checking);
-					if (current_customer.customer_checking == null) {
+					System.out.println(current_customer.getCustomer_checking());
+					if (current_customer.getCustomer_checking() == null) {
 						// Customer needs to create 1
 						CreateCheckingsUI making_one = new CreateCheckingsUI(current_customer);
 					} else {
-						CheckingsUI checking_in_use = new CheckingsUI(current_customer.customer_checking); // pass in
+						CheckingsUI checking_in_use = new CheckingsUI(current_customer.getCustomer_checking()); // pass in
 																											// that info
 					}
 				}
@@ -490,11 +493,11 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 
 			savings.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (current_customer.customer_saving == null) {
+					if (current_customer.getCustomer_saving() == null) {
 						// Customer needs to create 1
 						CreateSavingsUI making_one = new CreateSavingsUI(current_customer);
 					} else {
-						SavingsUI checking_in_use = new SavingsUI(current_customer.customer_saving); // pass in that
+						SavingsUI checking_in_use = new SavingsUI(current_customer.getCustomer_saving()); // pass in that
 																										// info
 					}
 				}
@@ -515,15 +518,24 @@ public class CustomerUI extends JFrame { // Every customer has a checking and sa
 	 */
 
 	public CustomerUI() {
+		JLabel customer_intro = new JLabel("Please choose an option");
 		JButton btn_login = new JButton("Log In");
 		JButton btn_create_user = new JButton("Create a new account");
+		
+		setLayout(new BorderLayout());
+		
+		
 		JPanel panel = new JPanel();
-		add(panel);
-
-		panel.add(btn_login);
-		panel.add(btn_create_user);
+		JPanel choice = new JPanel();
+		add(panel, BorderLayout.NORTH);
+		add(choice, BorderLayout.CENTER);
+		
+		panel.add(customer_intro);
+		choice.add(btn_login);
+		choice.add(btn_create_user);
+		
 		setSize(800, 400);
-		setLocation(200, 100);
+		setLocationRelativeTo(null);
 		setVisible(true);
 
 		btn_login.addActionListener(new ActionListener() {

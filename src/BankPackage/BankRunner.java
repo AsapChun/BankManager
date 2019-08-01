@@ -2,6 +2,7 @@ package BankPackage;
 
 import javax.swing.*;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.*;
@@ -19,22 +20,18 @@ public class BankRunner extends JFrame{
 	public BankRunner(Bank bank) { //Create an instance of the Interface
 		JButton jbtManager = new JButton( "Manager" );
 		JButton jbtCustomer = new JButton( "Customer" );
-		jbtManager.setSize(new Dimension(400,400));
 		JPanel panel = new JPanel();
+		JPanel choices = new JPanel();
+		setLayout(new BorderLayout());
 		
 		
-		
-		panel.setSize(new Dimension(400,400));
-		panel.setLayout(new FlowLayout());
-		add(panel);
-		
-		panel.setLayout( new FlowLayout(FlowLayout.CENTER,30,20));
 		JLabel intro = new JLabel( "Welcome to the Bank! Options:" );
 		
-		
+		add(panel, BorderLayout.NORTH);
+		add(choices,  BorderLayout.CENTER);
 		panel.add( intro );
-		panel.add( jbtManager );
-		panel.add( jbtCustomer );
+		choices.add( jbtManager);
+		choices.add( jbtCustomer);
 		  
 		jbtManager.addActionListener(new ActionListener() 
 		{
@@ -57,7 +54,7 @@ public class BankRunner extends JFrame{
         Bank bank = new Bank();
 	  	Bank.Customers.add(new Customer("Ethan",19,12,1997,12,"$"));
 	  	Bank.Customers.add(new Customer("Sean",12,12,1222,12,"$"));
-	  	Bank.Customers.get(0).Password = "0";
+	  	Bank.Customers.get(0).setPassword("0");
 	  //Create a JFrame instance of the BankRunner interface
 	    JFrame frame = new BankRunner(bank);	
 		// Initialize frame information

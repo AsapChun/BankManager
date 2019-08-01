@@ -38,7 +38,7 @@ public class Manager extends JFrame{
 		    	for(int i = 0; i < Bank.Customers.size(); i++) {
 		    		// TODO: add a new JFrame to List all the customers, not sure how this will work
 		    		Customer toPrint = Bank.Customers.get(i);
-		    		System.out.println(toPrint.user_info);
+		    		System.out.println(toPrint.getUser_info());
 		    	}
 		    	customerListUI customerlist = new  customerListUI();
 		    }

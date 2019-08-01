@@ -4,52 +4,52 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Customer {
-	public Data user_info;
-	public CheckingAccount customer_checking ;
-	public String Password = "";
-	public SavingAccount customer_saving;
-	public ArrayList<Loans> customer_loan = new ArrayList<Loans>();
-	boolean collateral = false;
-	public String Currency; 
+	private Data user_info;
+	private CheckingAccount customer_checking ;
+	private String Password = "";
+	private SavingAccount customer_saving;
+	private ArrayList<Loans> customer_loan = new ArrayList<Loans>();
+	private boolean collateral = false;
+	private String Currency; 
 	
 	
 	public Customer(String name, int day, int month, int year, int age, String curr) {
-		this.user_info = new Data(name, day, month, year, age);
-		Currency =  curr;
+		this.setUser_info(new Data(name, day, month, year, age));
+		setCurrency(curr);
 	}
 	
 	public String CustomerSummary(){
 	  StringBuilder report = new StringBuilder();
 	  report.append("Customer Summary! " + "\n");
-	  int age = user_info.age;
-	  int dayOfBirth = user_info.birth_day;
-	  int monthOfBirth = user_info.birth_month;
-	  int yearOfBirth = user_info.birth_year;
-	  String name = user_info.customer_name;
+	  int age = getUser_info().age;
+	  int dayOfBirth = getUser_info().birth_day;
+	  int monthOfBirth = getUser_info().birth_month;
+	  int yearOfBirth = getUser_info().birth_year;
+	  String name = getUser_info().customer_name;
 	  report.append("Name: " + name+ "; Age: " + age + "; DOB: " + monthOfBirth + "/" + dayOfBirth + "/" + yearOfBirth + "\n");
 	  report.append("--------------------------------------------------"+ "\n");
 	  report.append(name + "'s Account Summary: " + "\n");
-	  if(customer_checking == null) {
+	  if(getCustomer_checking() == null) {
 	    report.append(name + "'s Checking Account: DOES NOT EXIST!" + "\n");
 	  }else {
 	    report.append(name + "'s Checking Account: " + "\n");
-	    report.append("          - Balance: "+ customer_checking.getBalance() + "\n");
+	    report.append("          - Balance: "+ getCustomer_checking().getBalance() + "\n");
 	  }
-	  if(customer_saving == null) {
+	  if(getCustomer_saving() == null) {
 	    report.append(name + "'s Saving Account: DOES NOT EXIST!" + "\n");
 	  }else {
 	    report.append(name + "'s Saving Account: " + "\n");
-        report.append("          - Balance: "+ customer_saving.getBalance() + "\n");
+        report.append("          - Balance: "+ getCustomer_saving().getBalance() + "\n");
 	  }
-	  Iterator iter = customer_loan.iterator();
+	  Iterator iter = getCustomer_loan().iterator();
 	  Boolean check = true;
 	  report.append(name + "'s Loans: " + "\n");
 	  int count = 1;
 	  while(iter.hasNext()) {
 	    report.append("Loan "+count + "\n");
 	    Loans x = (Loans) iter.next();
-	    report.append("          - Amount: "+ x.value +"; Interest Rate: " + x.interest+ "; Length of Loan:  " + x.lengthOfLoan + "\n");
-	    report.append("          - Total Repayment - " + Currency + x.totalRepayment()+ "\n");
+	    report.append("          - Amount: "+ x.getValue() +"; Interest Rate: " + x.getInterest()+ "; Length of Loan:  " + x.getLengthOfLoan() + "\n");
+	    report.append("          - Total Repayment - " + getCurrency() + x.totalRepayment()+ "\n");
 	    count ++;
 	  }
 	  if(check) {
@@ -65,45 +65,45 @@ public class Customer {
 
 	public void create_loan(int total, float Rate, int length) {
 	  Loans new_loan = new Loans(total, Rate, length);
-	  this.customer_loan.add(new_loan); //add to array list of loans
+	  this.getCustomer_loan().add(new_loan); //add to array list of loans
 	}
 	
 	public void addLoan(Loans a) {
-		this.customer_loan.add(a);
+		this.getCustomer_loan().add(a);
 	}
 	
 	public void create_checking(float initial) {
-		this.customer_checking = new CheckingAccount(user_info);
-		this.customer_checking.deposit(initial - 5);
+		this.setCustomer_checking(new CheckingAccount(getUser_info()));
+		this.getCustomer_checking().deposit(initial - 5);
 		Bank.earnings.add(5);
 	}
 	
 	public void add_checking(float amount) {
-	  this.customer_checking.deposit(amount);;
+	  this.getCustomer_checking().deposit(amount);;
 	}
 	
 	public void create_saving(float initial) {
-		this.customer_saving = new SavingAccount(user_info);
-		this.customer_saving.deposit(initial - 5);
+		this.setCustomer_saving(new SavingAccount(getUser_info()));
+		this.getCustomer_saving().deposit(initial - 5);
 		Bank.earnings.add(5);
 	}
 	
 	public void add_saving(float amount) {
-      this.customer_saving.deposit(amount);
+      this.getCustomer_saving().deposit(amount);
     }
 	
 	
 	public String getName() {
-	  return this.user_info.customer_name;
+	  return this.getUser_info().customer_name;
 	}
 	
 	public void printInformation() {
 	  StringBuilder sb = new StringBuilder();
-	  sb.append("Account Name: "+ user_info.getCustomer_name() + "\n");
-	  sb.append("Customer's DOB: "+ user_info.birth_month + "/" + user_info.birth_day + "/" + user_info.birth_year + "\n");
-	  sb.append("Cusomter's age: "+ user_info.age + "\n");
-	  sb.append("Checking Account Balance: "+ Currency + customer_checking.getBalance() + "\n");
-	  sb.append("Saving Account Balance: "+ Currency + customer_saving.getBalance() + "\n");
+	  sb.append("Account Name: "+ getUser_info().getCustomer_name() + "\n");
+	  sb.append("Customer's DOB: "+ getUser_info().birth_month + "/" + getUser_info().birth_day + "/" + getUser_info().birth_year + "\n");
+	  sb.append("Cusomter's age: "+ getUser_info().age + "\n");
+	  sb.append("Checking Account Balance: "+ getCurrency() + getCustomer_checking().getBalance() + "\n");
+	  sb.append("Saving Account Balance: "+ getCurrency() + getCustomer_saving().getBalance() + "\n");
 	  //Todo
 	  sb.append("Existing Loans on File: (TODO need to add)");
 	  System.out.println(sb);
@@ -112,12 +112,68 @@ public class Customer {
 	  //take out loans if (they have collateral).
 	  //must have money in checkings or savings
 	  public boolean checkColl(Customer c) {
-	    if(c.customer_checking.getBalance() > 0 || c.customer_saving.getBalance() > 0) {
+	    if(c.getCustomer_checking().getBalance() > 0 || c.getCustomer_saving().getBalance() > 0) {
 	      return true;
 	    }else {
 	      return false;
 	    }
 	  }
+
+	public Data getUser_info() {
+		return user_info;
+	}
+
+	public void setUser_info(Data user_info) {
+		this.user_info = user_info;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
+	}
+
+	public CheckingAccount getCustomer_checking() {
+		return customer_checking;
+	}
+
+	public void setCustomer_checking(CheckingAccount customer_checking) {
+		this.customer_checking = customer_checking;
+	}
+
+	public String getCurrency() {
+		return Currency;
+	}
+
+	public void setCurrency(String currency) {
+		Currency = currency;
+	}
+
+	public SavingAccount getCustomer_saving() {
+		return customer_saving;
+	}
+
+	public void setCustomer_saving(SavingAccount customer_saving) {
+		this.customer_saving = customer_saving;
+	}
+
+	public ArrayList<Loans> getCustomer_loan() {
+		return customer_loan;
+	}
+
+	public void setCustomer_loan(ArrayList<Loans> customer_loan) {
+		this.customer_loan = customer_loan;
+	}
+
+	public boolean isCollateral() {
+		return collateral;
+	}
+
+	public void setCollateral(boolean collateral) {
+		this.collateral = collateral;
+	}
 	
 	
 }
